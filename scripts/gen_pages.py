@@ -74,7 +74,7 @@ def main():
         if a.get('rating'):
             bits.append(f"★ {a['rating']}" + (f" ({a['reviews']} تقييم)" if a.get('reviews') else ''))
         desc = ' · '.join(bits) + ' — شاهد التواريخ المتاحة واحجز عبر جاذر إن.'
-        img = SITE + 'og-square.jpg?v=3'
+        img = SITE + 'og-square.jpg?v=4'
         if preview(cover(a), f'og/{s}.jpg'):
             img = f'{SITE}og/{s}.jpg?v=3'
         title = f"{a['name']} | place.n"
