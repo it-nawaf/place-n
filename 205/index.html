@@ -280,6 +280,7 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
+html,body{overflow-x:clip}.intro h1{overflow:hidden;text-overflow:clip}
 .top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}html{scroll-padding-top:80px}.grid,#contact{scroll-margin-top:80px}
 @media (max-width:640px){.grid{row-gap:0}.grid>.card{padding-block:26px}.grid>.card:first-child{padding-top:6px}.grid>.card+.card{border-top:1px solid var(--line)}}
 button,a,[data-act],[data-type],[data-open]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -488,10 +489,12 @@ function typeName(a){var r=+a.rooms;if(!r)return "";var f=TYPES.filter(function(
 function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 
 /* ---------- public page ---------- */
+function fitH1(){var h=app.querySelector(".intro h1");if(!h)return;h.style.fontSize="";if(getComputedStyle(h).whiteSpace!=="nowrap")return;var f=parseFloat(getComputedStyle(h).fontSize);while(h.scrollWidth>h.clientWidth+1&&f>15){f-=.5;h.style.fontSize=f+"px"}}
+try{document.fonts&&document.fonts.ready.then(function(){fitH1()});addEventListener("resize",function(){fitH1()})}catch(e){}
 function paint(h){var box=document.createElement("div");box.innerHTML=h;tr(box);
   if(app.firstChild){var old={};app.querySelectorAll("img").forEach(function(im){var k=im.getAttribute("src");if(k&&im.complete&&!old[k])old[k]=im});
     box.querySelectorAll("img").forEach(function(im){var o=old[im.getAttribute("src")];if(o){o.className=im.className;o.alt=im.alt;im.replaceWith(o);delete old[im.getAttribute("src")]}})}
-  var y=window.scrollY,ty=app.querySelector(".types"),tx=ty?ty.scrollLeft:0;app.replaceChildren.apply(app,[].slice.call(box.childNodes));ty=app.querySelector(".types");if(ty&&tx)ty.scrollLeft=tx;if(Math.abs(window.scrollY-y)>2)window.scrollTo(0,y)}
+  var y=window.scrollY,ty=app.querySelector(".types"),tx=ty?ty.scrollLeft:0;app.replaceChildren.apply(app,[].slice.call(box.childNodes));ty=app.querySelector(".types");if(ty&&tx)ty.scrollLeft=tx;fitH1();if(Math.abs(window.scrollY-y)>2)window.scrollTo(0,y)}
 function render(){
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
   var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;if(S.live)filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
