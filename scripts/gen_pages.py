@@ -2,7 +2,7 @@
 
 Each page is index.html with its own title, description and preview image, so a link
 sent on WhatsApp shows that apartment's photo and name. The script also crops a
-1200x630 preview image (og/<number>.jpg) from the apartment's cover photo.
+800x800 preview image (og/<number>.jpg) from the apartment's cover photo.
 """
 import os, re, json, shutil, html
 from common import load
@@ -27,18 +27,18 @@ def cover(a):
 
 
 def preview(src, dest):
-    """Crop the cover photo to 1200x630 for link previews. Returns True when made."""
+    """Crop the cover photo to 800x800 for link previews. Returns True when made."""
     try:
         from PIL import Image
     except ImportError:
         return False
     if not src or not os.path.exists(src):
         return False
-    if os.path.exists(dest) and os.path.getmtime(dest) >= os.path.getmtime(src):
+    if os.path.exists(dest) and os.path.getmtime(dest) >= os.path.getmtime(src) and os.path.getmtime(dest) >= os.path.getmtime(__file__):
         return True
     im = Image.open(src).convert('RGB')
     w, h = im.size
-    tw, th = 1200, 630
+    tw, th = 800, 800
     s = max(tw / w, th / h)
     im = im.resize((round(w * s), round(h * s)), Image.LANCZOS)
     l, t = (im.width - tw) // 2, (im.height - th) // 2
@@ -52,8 +52,8 @@ def meta(title, desc, url, image):
             '<meta property="og:site_name" content="place.n">'
             '<meta property="og:title" content="%s"><meta property="og:description" content="%s">'
             '<meta property="og:type" content="website"><meta property="og:url" content="%s">'
-            '<meta property="og:image" content="%s"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
-            '<meta property="og:locale" content="ar_SA"><meta name="twitter:card" content="summary_large_image">'
+            '<meta property="og:image" content="%s"><meta property="og:image:width" content="800"><meta property="og:image:height" content="800">'
+            '<meta property="og:locale" content="ar_SA"><meta name="twitter:card" content="summary">'
             '<link rel="canonical" href="%s"><!--/og-->') % (e(desc), e(title), e(desc), e(url), e(image), e(url))
 
 
@@ -74,9 +74,9 @@ def main():
         if a.get('rating'):
             bits.append(f"★ {a['rating']}" + (f" ({a['reviews']} تقييم)" if a.get('reviews') else ''))
         desc = ' · '.join(bits) + ' — شاهد التواريخ المتاحة واحجز عبر جاذر إن.'
-        img = SITE + 'og.jpg'
+        img = SITE + 'og-square.jpg?v=3'
         if preview(cover(a), f'og/{s}.jpg'):
-            img = f'{SITE}og/{s}.jpg'
+            img = f'{SITE}og/{s}.jpg?v=3'
         title = f"{a['name']} | place.n"
         page = re.sub(r'<!--og-->.*?<!--/og-->', lambda m: meta(title, desc, f'{SITE}{s}', img), tpl, count=1, flags=re.S)
         page = re.sub(r'<title>.*?</title>', f'<title>{html.escape(title)}</title>', page, count=1, flags=re.S)
