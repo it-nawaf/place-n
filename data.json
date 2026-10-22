@@ -1088,7 +1088,8 @@
    "syncAt": "22 أكتوبر، 8:19 م",
    "rating": "10",
    "reviews": 83,
-   "unit": "194499"
+   "unit": "194499",
+   "halls": 1
   },
   {
    "id": "aj5tlc9",
@@ -1120,7 +1121,8 @@
     "2026-10-22"
    ],
    "syncAt": "21 أكتوبر، 9:14 م",
-   "unit": "216360"
+   "unit": "216360",
+   "halls": 1
   },
   {
    "id": "aeaz3do",
@@ -1152,7 +1154,8 @@
     "2026-10-22"
    ],
    "syncAt": "22 أكتوبر، 8:02 م",
-   "unit": "205837"
+   "unit": "205837",
+   "halls": 1
   },
   {
    "id": "am9rf2t",
@@ -1304,7 +1307,8 @@
     "2027-10-21",
     "2027-10-22"
    ],
-   "syncAt": "22 أكتوبر، 8:35 م"
+   "syncAt": "22 أكتوبر، 8:35 م",
+   "halls": 1
   },
   {
    "id": "aoit7nv",
@@ -1456,7 +1460,8 @@
     "2027-10-22"
    ],
    "syncAt": "22 أكتوبر، 8:35 م",
-   "ical2": "https://www.airbnb.com/calendar/ical/1489761248779876072.ics?t=9ac8cd30fd294ed4bdfdcbd32f9f4152&locale=ar"
+   "ical2": "https://www.airbnb.com/calendar/ical/1489761248779876072.ics?t=9ac8cd30fd294ed4bdfdcbd32f9f4152&locale=ar",
+   "halls": 1
   },
   {
    "id": "ahm184i",
@@ -1490,7 +1495,8 @@
    ],
    "syncAt": "22 أكتوبر، 8:02 م",
    "rating": "10",
-   "unit": "204745"
+   "unit": "204745",
+   "halls": 1
   },
   {
    "id": "u204",

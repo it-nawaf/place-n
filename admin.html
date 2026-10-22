@@ -309,6 +309,7 @@ var ICON={
  guests:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.6M18 14.5c1.6.7 2.6 2.2 3 4.5"/></svg>',
  bed:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18V7M3 13h18v5M21 13v-1.5a3 3 0 0 0-3-3h-7v4.5"/><circle cx="7" cy="10.5" r="1.8"/></svg>',
  bath:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 3.6-1.2"/><path d="M7 19l-1 2M17 19l1 2"/></svg>',
+ sofa:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/><path d="M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v4H3z"/><path d="M5 17v2M19 17v2"/></svg>',
  area:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 9h5V4"/></svg>',
  pin:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
  share:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>',
@@ -356,7 +357,7 @@ function render(){
     var p=(a.photos||[])[0],n=(a.photos||[]).length;
     var bk=S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(src(p))+'" alt="'+esc(a.name)+'" loading="lazy">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
     h+='<div>'+(typeName(a)?'<div class="type-tag">'+typeName(a)+'</div>':'')+'<h3>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h3><div class="meta">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+rateHTML(a)+'</div>';
-    h+='<div class="meta num">'+(a.guests?'<span>'+ICON.guests+' '+fmt(a.guests)+' ضيوف</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+' غرف</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+' دورات مياه</span>':'')+'</div>';
+    h+='<div class="meta num">'+(a.halls?'<span>'+ICON.sofa+' '+fmt(a.halls)+(+a.halls===1?' صالة':' صالات')+'</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+(+a.rooms===1?' غرفة':' غرف')+'</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+(+a.baths===1?' دورة مياه':' دورات مياه')+'</span>':'')+'</div>';
     h+='<div class="price"><span>السعر والحجز عبر جاذر إن</span></div></button>';
   });
   h+='</section></main>';
