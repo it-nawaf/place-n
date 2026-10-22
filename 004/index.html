@@ -503,6 +503,11 @@ function typeName(a){var r=+a.rooms;if(!r)return "";var f=TYPES.filter(function(
 function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 
 /* ---------- public page ---------- */
+/* iOS can snap the page back to the top on its own (e.g. when a screenshot is taken); put it back */
+(function(){var lt=0,ws=0,ss=0;function u(){lt=Date.now()}["touchstart","touchmove","wheel","keydown","mousedown"].forEach(function(n){addEventListener(n,u,{passive:true,capture:true})});
+  addEventListener("scroll",function(e){var el=e.target;if(el===document||el===document.documentElement){var y=window.scrollY;if(y===0&&ws>300&&Date.now()-lt>700&&!S.open){window.scrollTo(0,ws);return}ws=y;return}
+    if(el&&el.classList&&el.classList.contains("sheet")){var t=el.scrollTop;if(t===0&&ss>300&&Date.now()-lt>700&&!el._jump){el.scrollTop=ss;return}ss=t;el._jump=false}},true);
+  window._pnResetSheet=function(){ss=0}})();
 function fitH1(){var h=app.querySelector(".intro h1");if(!h)return;h.style.fontSize="";if(getComputedStyle(h).whiteSpace!=="nowrap")return;var f=parseFloat(getComputedStyle(h).fontSize);while(h.scrollWidth>h.clientWidth+1&&f>15){f-=.5;h.style.fontSize=f+"px"}}
 try{document.fonts&&document.fonts.ready.then(function(){fitH1()});addEventListener("resize",function(){if(!S.open)fitH1()})}catch(e){}
 function paint(h){var box=document.createElement("div");box.innerHTML=h;tr(box);
@@ -542,7 +547,7 @@ function render(){
 }
 
 /* ---------- detail ---------- */
-function openApt(id){var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(location.pathname!==sl||location.hash)history.replaceState(null,"",sl)}catch(e){}document.body.style.overflow="hidden"}
+function openApt(id){if(window._pnResetSheet)_pnResetSheet();var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(location.pathname!==sl||location.hash)history.replaceState(null,"",sl)}catch(e){}document.body.style.overflow="hidden"}
 function closeApt(){S.open=null;layer.innerHTML="";document.body.classList.remove("sheet-open");document.body.style.overflow="";try{history.replaceState(null,"","/")}catch(e){}render()}
 function sDate(ds){var d=parse(ds),m=MONTHS[d.getMonth()];return d.getDate()+" "+(typeof LANG!=="undefined"&&LANG==="en"?m.slice(0,3):m)}
 function dpSteps(){var two=!(!S.ci||S.co&&S.dp==="ci");

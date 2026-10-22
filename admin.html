@@ -435,7 +435,7 @@ function render(){
 }
 
 /* ---------- detail ---------- */
-function openApt(id){var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{if(location.hash!=="#"+id)history.replaceState(null,"","#"+id)}catch(e){}document.body.style.overflow="hidden"}
+function openApt(id){if(window._pnResetSheet)_pnResetSheet();var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{if(location.hash!=="#"+id)history.replaceState(null,"","#"+id)}catch(e){}document.body.style.overflow="hidden"}
 function closeApt(){S.open=null;layer.innerHTML="";document.body.classList.remove("sheet-open");document.body.style.overflow="";try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}render()}
 function sDate(ds){var d=parse(ds),m=MONTHS[d.getMonth()];return d.getDate()+" "+(typeof LANG!=="undefined"&&LANG==="en"?m.slice(0,3):m)}
 function dpSteps(){var two=!(!S.ci||S.co&&S.dp==="ci");
