@@ -516,10 +516,13 @@ async function ghPut(path,b64,msg,sha){var body={message:msg,content:b64,branch:
   if(r.status===409||r.status===422)throw {code:"conflict"};if(r.status===401||r.status===403)throw {code:"auth"};if(!r.ok)throw {code:"http",status:r.status};
   return r.json()}
 function cleanDraft(d){var c=JSON.parse(JSON.stringify(d));c.apts.forEach(function(a){(a.photos||[]).forEach(function(p){delete p._pv})});return c}
-var AUTO=["sync","syncAt","checkAt","rating","reviews","unit"];
-function mergeAuto(mine,latest){var by={};latest.apts.forEach(function(x){by[x.id]=x});
-  mine.apts.forEach(function(a){var l=by[a.id];if(!l)return;AUTO.forEach(function(k){if(k in l)a[k]=l[k];else delete a[k]})});
-  if(latest.site&&latest.site.rateAt)mine.site.rateAt=latest.site.rateAt;return mine}
+function merge3(base,mine,latest){var J=JSON.stringify,out=JSON.parse(J(latest)),bBy={},lBy={},has={},pos={};
+  base.apts.forEach(function(a){bBy[a.id]=a});out.apts.forEach(function(a){lBy[a.id]=a});mine.apts.forEach(function(a,i){has[a.id]=1;pos[a.id]=i});
+  Object.keys(Object.assign({},mine.site,base.site)).forEach(function(k){if(J(mine.site[k])!==J(base.site[k])){if(mine.site[k]===undefined)delete out.site[k];else out.site[k]=mine.site[k]}});
+  out.apts=out.apts.filter(function(a){return !(bBy[a.id]&&!has[a.id])});
+  mine.apts.forEach(function(a){var b=bBy[a.id],l=lBy[a.id];if(!b){if(!l)out.apts.push(JSON.parse(J(a)));return}if(!l)return;
+    Object.keys(Object.assign({},a,b)).forEach(function(k){if(J(a[k])!==J(b[k])){if(a[k]===undefined)delete l[k];else l[k]=JSON.parse(J(a[k]))}})});
+  out.apts.sort(function(x,y){return (x.id in pos?pos[x.id]:1e6)-(y.id in pos?pos[y.id]:1e6)});return out}
 async function uploadPhoto(blob,canvas){var id=uid().slice(1)+Date.now().toString(36),path="img/"+id+".jpg";
   await ghPut(path,await blobB64(blob),"صورة جديدة",null);
   return {f:path,_pv:canvas.toDataURL("image/jpeg",.7)}}
@@ -545,9 +548,9 @@ async function save(){
   S.busy=true;setStatus("جاري النشر…","");renderAdmin();
   var data=cleanDraft(draft);
   for(var attempt=0;attempt<3;attempt++){
-    try{var latest=await ghGetData();data=mergeAuto(data,latest);
-      await ghPut("data.json",b64utf8(JSON.stringify(data,null,1)+"\n"),"تحديث الشقق من صفحة الإدارة",GH.sha);
-      DATA=data;draft=JSON.parse(JSON.stringify(data));S.dirty=false;S.busy=false;renderAdmin();
+    try{var latest=await ghGetData();var merged=merge3(GH.base,data,latest);
+      await ghPut("data.json",b64utf8(JSON.stringify(merged,null,1)+"\n"),"تحديث الشقق من صفحة الإدارة",GH.sha);
+      DATA=merged;GH.base=JSON.parse(JSON.stringify(merged));draft=JSON.parse(JSON.stringify(merged));S.dirty=false;S.busy=false;renderAdmin();
       setStatus("تم النشر. يظهر في الموقع خلال دقيقة أو دقيقتين.","ok");return}
     catch(e){if(e&&e.code==="conflict")continue;S.busy=false;renderAdmin();
       setStatus(e&&e.code==="auth"?"مفتاح GitHub غير صالح أو منتهي. سجّل الخروج وأدخله من جديد.":"تعذّر النشر. تأكد من الاتصال وحاول مرة أخرى.","err");return}
@@ -569,7 +572,7 @@ async function ghCalInfo(){try{var r=await fetch(ghUrl("/actions/workflows/calen
 function loginHTML(msg){return '<div class="wrap" style="max-width:520px;padding-block:60px;display:grid;gap:16px">'+logo('style="width:120px;height:36px"')+'<h1 style="font-size:24px">إدارة place.n</h1><p class="note" style="font-size:14px">أدخل مفتاح GitHub الخاص بك مرة واحدة على هذا الجهاز. يُحفظ في هذا المتصفح فقط.</p><label class="fld"><span>مفتاح GitHub</span><input id="gh-token" type="password" dir="ltr" autocomplete="off" placeholder="github_pat_…"></label>'+(msg?'<p class="status err">'+esc(msg)+'</p>':'')+'<button class="btn pri" data-act="ghlogin" style="justify-self:start">دخول</button></div>'}
 async function ghLogin(){var v=(document.getElementById("gh-token")||{}).value||"";v=v.trim();if(!v)return;GH.token=v;
   try{var d=await ghGetData();try{localStorage.setItem(GH.KEY,v)}catch(e){}start(d)}catch(e){GH.token=null;app.innerHTML=loginHTML(e&&e.code==="auth"?"المفتاح غير صحيح أو لا يملك صلاحية على المستودع.":"تعذّر الاتصال بـ GitHub. حاول مرة أخرى.")}}
-function start(d){DATA=d;CAP.canEdit=true;CAP.artifact=true;render();openAdmin();ghCalInfo()}
+function start(d){GH.base=JSON.parse(JSON.stringify(d));DATA=d;CAP.canEdit=true;CAP.artifact=true;render();openAdmin();ghCalInfo()}
 /* ---------- events ---------- */
 document.addEventListener("click",function(e){
   if(S.dp&&!e.target.closest(".dpop,.dbtn")&&!draft&&!S.open){S.dp=null;render()}
