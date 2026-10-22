@@ -1,5 +1,5 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>place.n | شقق مفروشة للإيجار اليومي</title><meta name="description" content="place.n — شقق مفروشة للإيجار اليومي في بريدة. شاهد الشقق والتواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:title" content="place.n — شقق مفروشة للإيجار اليومي"><meta property="og:description" content="شاهد الشقق والتواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:type" content="website"><meta property="og:url" content="https://place-n.com/"><meta name="theme-color" content="#181C21"><link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" href="favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2"><meta property="og:image" content="https://place-n.com/icon-512.png">
+<base href="/"><title>place.n | شقق مفروشة للإيجار اليومي</title><meta name="description" content="place.n — شقق مفروشة للإيجار اليومي في بريدة. شاهد الشقق والتواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:title" content="place.n — شقق مفروشة للإيجار اليومي"><meta property="og:description" content="شاهد الشقق والتواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:type" content="website"><meta property="og:url" content="https://place-n.com/"><meta name="theme-color" content="#181C21"><link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" href="favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2"><meta property="og:image" content="https://place-n.com/icon-512.png">
 <meta data-src="" name="claude:viewport-fit-sides" content="cover">
 <link data-src="" rel="preconnect" href="https://fonts.googleapis.com">
 <link data-src="" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap">
@@ -325,7 +325,9 @@ function fmtDT(d){return DAYS[d.getDay()]+" "+d.getDate()+" "+MONTHS[d.getMonth(
 function policyHTML(site){var h=cancelHrs(site);return '<div class="sec"><h3>سياسة الإلغاء</h3><p class="num">يمكن تعديل الحجز أو إلغاؤه حتى '+h+' ساعة قبل موعد الدخول. إذا بقي أقل من '+h+' ساعة على موعد الدخول فلا يمكن تعديل الحجز أو إلغاؤه.</p></div>'}
 function rateHTML(a,big){if(!a.rating)return "";return '<div class="rate'+(big?' big':'')+'"><span class="star" aria-hidden="true">★</span><b class="num">'+esc(a.rating)+'</b>'+(a.reviews?'<span class="num">('+fmt(a.reviews)+' تقييم'+(big?' في جاذر إن':'')+')</span>':'')+'</div>'}
 var SITE_URL="https://place-n.com/";
-function aptLink(a){return SITE_URL+"#"+a.id}
+function slug(a){var m=String(a.name||"").match(/\d+/g);return m?m[m.length-1]:a.id}
+function findKey(k){k=decodeURIComponent(String(k||"")).replace(/^\/+|\/+$/g,"");if(!k)return null;var l=apts();var a=l.find(function(x){return x.id===k})||l.find(function(x){return slug(x)===k});return a?a.id:null}
+function aptLink(a){return SITE_URL+slug(a)}
 function shareHTML(a){var l=aptLink(a),wa="https://wa.me/?text="+encodeURIComponent(a.name+" – place.n\n"+l);
   return '<div class="share-box"><label class="fld"><span>رابط الشقة</span><input id="share-url" readonly dir="ltr" value="'+esc(l)+'"></label><div class="share-acts"><button class="btn pri" data-act="copylink">نسخ الرابط</button><a class="btn wa-btn" href="'+esc(wa)+'" target="_blank" rel="noopener">إرسال عبر واتساب</a></div></div>'}
 var TYPES=[[1,"غرفة وصالة"],[2,"غرفتين وصالة"],[3,"ثلاث غرف وصالة"]];
@@ -367,8 +369,8 @@ function render(){
 }
 
 /* ---------- detail ---------- */
-function openApt(id){var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{if(location.hash!=="#"+id)history.replaceState(null,"","#"+id)}catch(e){}document.body.style.overflow="hidden"}
-function closeApt(){S.open=null;layer.innerHTML="";document.body.style.overflow="";try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}render()}
+function openApt(id){var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(location.pathname!==sl||location.hash)history.replaceState(null,"",sl)}catch(e){}document.body.style.overflow="hidden"}
+function closeApt(){S.open=null;layer.innerHTML="";document.body.style.overflow="";try{history.replaceState(null,"","/")}catch(e){}render()}
 function calHTML(a,base,mode,attr){attr=attr||"day";
   var t=today(),b=bookedOf(a),sy=a.sync||[],h='';
   for(var k=0;k<2;k++){
@@ -601,10 +603,10 @@ document.addEventListener("change",function(e){
 document.addEventListener("submit",function(e){if(e.target.id==="search"){e.preventDefault();S.dp=null;render();var g=document.querySelector(".grid");if(g)g.scrollIntoView({behavior:"smooth",block:"start"})}});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!draft&&!S.open){S.dp=null;render()}else if(draft)closeAdmin();else if(S.open)closeApt()}
   if(S.open&&!draft&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){var a=apts().find(function(x){return x.id===S.open});if(a&&a.photos.length>1){S.gi=(S.gi+(e.key==="ArrowLeft"?1:-1)+a.photos.length)%a.photos.length;renderDetail()}}});
-window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h&&apts().some(function(a){return a.id===h}))openApt(h)});
+window.addEventListener("hashchange",function(){var id=findKey(location.hash.slice(1));if(id)openApt(id)});
 
 fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){DATA=d;render();
-  var h0=location.hash.slice(1);if(h0&&DATA.apts.some(function(a){return a.id===h0}))openApt(h0)}).catch(function(){app.innerHTML='<div class="wrap" style="padding:60px 0;text-align:center">تعذّر تحميل الشقق. حدّث الصفحة.</div>'});
+  var id0=findKey(location.hash.slice(1))||findKey(location.pathname);if(id0)openApt(id0)}).catch(function(){app.innerHTML='<div class="wrap" style="padding:60px 0;text-align:center">تعذّر تحميل الشقق. حدّث الصفحة.</div>'});
 })();
 </script>
 </body></html>
