@@ -603,7 +603,12 @@ function renderDetail(){
   document.body.classList.add("sheet-open");
   var _wa=String(site.whatsapp||"").replace(/\D/g,""),_en=LANG==="en",_nm=_en?trS(a.name):a.name,_msg=(_en?"Hello, I'm interested in "+_nm+(S.ci&&S.co?" from "+fmtDate(S.ci)+" to "+fmtDate(S.co):""):"السلام عليكم، أستفسر عن "+_nm+(S.ci&&S.co?" من "+fmtDate(S.ci)+" إلى "+fmtDate(S.co):""))+"\n"+aptLink(a);
   setTimeout(function(){var wf=document.querySelector(".wa-float");if(wf&&_wa)wf.href=waLink(_wa,_msg)},0);
-  layer.innerHTML=h;tr(layer);
+  var _sh=layer.querySelector(".sheet"),_same=layer.getAttribute("data-apt")===S.open,_st=_sh&&_same?_sh.scrollTop:0,_old={};
+  if(_same)layer.querySelectorAll("img").forEach(function(im){var k=im.getAttribute("src");if(k&&im.complete&&!_old[k])_old[k]=im});
+  var _box=document.createElement("div");_box.innerHTML=h;tr(_box);
+  if(_same)_box.querySelectorAll("img").forEach(function(im){var o=_old[im.getAttribute("src")];if(o){o.className=im.className;o.alt=im.alt;im.replaceWith(o);delete _old[im.getAttribute("src")]}});
+  layer.replaceChildren.apply(layer,[].slice.call(_box.childNodes));layer.setAttribute("data-apt",S.open);
+  if(_st){var _n=layer.querySelector(".sheet");if(_n)_n.scrollTop=_st}
 }
 function pickDay(ds){
   var a=apts().find(function(x){return x.id===S.open});
