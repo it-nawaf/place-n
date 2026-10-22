@@ -267,7 +267,7 @@ footer .wrap{padding-bottom:96px}
 (function(){
 "use strict";
 var DATA={site:{},apts:[]};
-var S={type:0,share:false,enh:true,dp:null,dpBase:null,ci:today(),co:addDays(today(),1),guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
+var S={live:false,type:0,share:false,enh:true,dp:null,dpBase:null,ci:today(),co:addDays(today(),1),guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
 var CAP={user:null,artifact:null,assets:null,canEdit:false};
 var draft=null;
 var AMEN=["واي فاي","دخول ذاتي","موقف خاص","مطبخ مجهز","غسالة ملابس","تلفزيون ذكي","تكييف مركزي","قهوة وشاي","جلسة خارجية","مسبح","مصعد","مناسب للعائلات","مكان عمل","مستلزمات استحمام"];
@@ -338,7 +338,7 @@ function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 /* ---------- public page ---------- */
 function render(){
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
-  var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
+  var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;if(S.live)filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
   var hasF=S.ci&&S.co||S.guests||S.type;
   var h='';
   h+='<header class="top"><div class="wrap"><a class="brand" href="#" data-act="home" aria-label="'+esc(site.name)+'">'+logo('role="img"')+'<small>'+esc(site.tagline)+'</small></a><nav><button class="theme-btn" data-act="theme" aria-label="'+(THEME==="dark"?"التبديل إلى الوضع الفاتح":"التبديل إلى الوضع الليلي")+'">'+(THEME==="dark"?SUN+'<span>فاتح</span>':MOON+'<span>ليلي</span>')+'</button><a class="link" href="#contact" data-act="contact">التواصل</a>'+(CAP.canEdit?'<button class="owner-btn" data-act="admin">إدارة الشقق</button>':'')+'</nav></div></header>';
@@ -350,13 +350,13 @@ function render(){
     h+='<div class="dpop" role="dialog" aria-label="اختيار التواريخ"><div class="cal-head"><b class="dp-hint">'+(!S.ci||S.co&&S.dp==="ci"?"اختر يوم الوصول":"اختر يوم المغادرة")+'</b><div style="display:flex;gap:6px"><button type="button" class="icon-btn" data-act="dprev" aria-label="الشهر السابق">›</button><button type="button" class="icon-btn" data-act="dnext" aria-label="الشهر التالي">‹</button></div></div><div class="cals">'+calHTML({booked:[]},S.dpBase,"pick","sday")+'</div><div class="dp-foot"><span class="num">'+(nN?fmtDate(S.ci)+' ← '+fmtDate(S.co)+' · '+nN+' '+(nN===1?"ليلة":nN===2?"ليلتان":"ليالٍ"):"")+'</span><div style="display:flex;gap:8px">'+(S.ci?'<button type="button" class="btn" data-act="dreset">مسح التواريخ</button>':'')+'<button type="button" class="btn pri" data-act="dclose">تم</button></div></div></div>'}
   h+='</div>';
   h+='<div class="types" role="group" aria-label="نوع الشقة">'+[[0,"الكل"]].concat(TYPES).map(function(x){return '<button class="type-chip'+(S.type===x[0]?' on':'')+'" data-type="'+x[0]+'" aria-pressed="'+(S.type===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
-  h+='<div class="filters-note"><span class="num">'+(hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي'))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
+  h+='<div class="filters-note"><span class="num">'+(!S.live&&S.ci&&S.co?'جاري التحقق من التوفر…':hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي'))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
   h+='<section class="wrap grid" aria-label="الشقق">';
   if(!list.length)h+='<div class="empty">لا توجد شقق معروضة بعد.'+(CAP.canEdit?' اضغط «إدارة الشقق» لإضافة أول شقة.':'')+'</div>';
   else if(!filtered.length)h+='<div class="empty">'+(S.type?'لا توجد حاليًا شقة من نوع «'+TYPES[S.type-1][1]+'»'+(S.guests?' تتسع لهذا العدد من الضيوف':'')+'.':'لا توجد شقة تتسع لهذا العدد من الضيوف.')+'</div>';
   filtered.forEach(function(a){
     var p=(a.photos||[])[0],n=(a.photos||[]).length;
-    var bk=S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(src(p))+'" alt="'+esc(a.name)+'" loading="lazy">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
+    var bk=S.live&&S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(src(p))+'" alt="'+esc(a.name)+'" loading="lazy">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(S.live&&S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
     h+='<div>'+(typeName(a)?'<div class="type-tag">'+typeName(a)+'</div>':'')+'<h3>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h3><div class="meta">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+rateHTML(a)+'</div>';
     h+='<div class="meta num">'+(a.halls?'<span>'+ICON.sofa+' '+fmt(a.halls)+(+a.halls===1?' صالة':' صالات')+'</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+(+a.rooms===1?' غرفة':' غرف')+'</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+(+a.baths===1?' دورة مياه':' دورات مياه')+'</span>':'')+'</div>';
     h+='<div class="price"><span>السعر والحجز عبر جاذر إن</span></div></button>';
@@ -605,7 +605,8 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!d
   if(S.open&&!draft&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){var a=apts().find(function(x){return x.id===S.open});if(a&&a.photos.length>1){S.gi=(S.gi+(e.key==="ArrowLeft"?1:-1)+a.photos.length)%a.photos.length;renderDetail()}}});
 window.addEventListener("hashchange",function(){var id=findKey(location.hash.slice(1));if(id)openApt(id)});
 
-function liveSync(){fetch("https://placen-cal.blue-hill-91f0.workers.dev/",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.apts)return;var ch=false;DATA.apts.forEach(function(a){var l=j.apts[a.id];if(l&&JSON.stringify(l)!==JSON.stringify(a.sync||[])){a.sync=l;ch=true}});if(!ch)return;if(S.open)renderDetail();else if(!S.dp)render()}).catch(function(){})}
+function liveDone(){if(S.live)return;S.live=true;if(S.open)renderDetail();else if(!S.dp)render()}
+function liveSync(){setTimeout(liveDone,6000);fetch("https://placen-cal.blue-hill-91f0.workers.dev/",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.apts){liveDone();return}var ch=false;DATA.apts.forEach(function(a){var l=j.apts[a.id];if(l&&JSON.stringify(l)!==JSON.stringify(a.sync||[])){a.sync=l;ch=true}});if(!ch&&S.live)return;S.live=true;if(S.open)renderDetail();else if(!S.dp)render()}).catch(liveDone)}
 fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){DATA=d;render();liveSync();
   var id0=findKey(location.hash.slice(1))||findKey(location.pathname);if(id0)openApt(id0)}).catch(function(){app.innerHTML='<div class="wrap" style="padding:60px 0;text-align:center">تعذّر تحميل الشقق. حدّث الصفحة.</div>'});
 })();
