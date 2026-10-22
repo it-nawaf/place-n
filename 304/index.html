@@ -321,6 +321,13 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .facts2 b{font-family:var(--f-display);font-weight:500;font-size:19px;line-height:1.1}
 .facts2 span{font-size:12px;color:var(--muted);line-height:1.3}
 @media (max-width:380px){.facts2 span{font-size:11px}.facts2 b{font-size:17px}}
+.dates button{all:unset;box-sizing:border-box;padding:8px 12px;display:grid;cursor:pointer;min-width:0;transition:background .15s}
+.dates button+button{border-inline-start:1px solid var(--line)}
+.dates button b{font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dates button:hover{background:color-mix(in srgb,var(--gold) 6%,transparent)}
+.dates button.on{background:color-mix(in srgb,var(--gold) 12%,transparent);box-shadow:inset 0 -2px 0 var(--gold)}.dates button.on span{color:var(--gold-ink)}
+.dates button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.cal-hint.on{color:var(--gold-ink);font-weight:500}
 .arch .state{animation:st-in .35s ease both}
 .arch .state.ld{width:62px;height:22px;padding:0;background:linear-gradient(90deg,rgba(243,231,191,.25) 0%,rgba(243,231,191,.75) 50%,rgba(243,231,191,.25) 100%);background-size:200% 100%;animation:st-sh 1.1s linear infinite}
 .ld-dots{display:inline-flex;gap:5px;align-items:center;height:1.7em}
@@ -391,7 +398,7 @@ var EN={
 "اختر تواريخك":"Choose your dates","اختر التواريخ":"Choose dates","تواريخ أخرى":"Other dates",
 "لا توجد شقق معروضة بعد.":"No apartments listed yet.","تعذّر تحميل الشقق. حدّث الصفحة.":"Couldn't load the apartments. Refresh the page.",
 "الشقق":"Apartments","نوع الشقة":"Apartment type","اختيار التواريخ":"Choose dates","الصورة السابقة":"Previous photo","الصورة التالية":"Next photo",
-"الغلاف":"Cover","ضيوف":"Guests","ضيف":"Guest","غرفة نوم":"Bedroom","سرير":"Bed","دورة مياه":"Bathroom","اختر الآن":"Pick now","اختر اليوم":"Pick a day","تسجيل":"","الدخول":"Check-in","الخروج":"Check-out","من":"From ","حتى":"Until ",
+"الغلاف":"Cover","اختر يوم الوصول الجديد.":"Pick your new check-in day.","اختر يوم المغادرة الجديد.":"Pick your new check-out day.","ضيوف":"Guests","ضيف":"Guest","غرفة نوم":"Bedroom","سرير":"Bed","دورة مياه":"Bathroom","اختر الآن":"Pick now","اختر اليوم":"Pick a day","تسجيل":"","الدخول":"Check-in","الخروج":"Check-out","من":"From ","حتى":"Until ",
 "place.n | شقق مفروشة للإيجار اليومي":"place.n | Furnished apartments for daily rent"
 };
 var EN_RE=[
@@ -497,7 +504,7 @@ function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 
 /* ---------- public page ---------- */
 function fitH1(){var h=app.querySelector(".intro h1");if(!h)return;h.style.fontSize="";if(getComputedStyle(h).whiteSpace!=="nowrap")return;var f=parseFloat(getComputedStyle(h).fontSize);while(h.scrollWidth>h.clientWidth+1&&f>15){f-=.5;h.style.fontSize=f+"px"}}
-try{document.fonts&&document.fonts.ready.then(function(){fitH1()});addEventListener("resize",function(){fitH1()})}catch(e){}
+try{document.fonts&&document.fonts.ready.then(function(){fitH1()});addEventListener("resize",function(){if(!S.open)fitH1()})}catch(e){}
 function paint(h){var box=document.createElement("div");box.innerHTML=h;tr(box);
   if(app.firstChild){var old={};app.querySelectorAll("img").forEach(function(im){var k=im.getAttribute("src");if(k&&im.complete&&!old[k])old[k]=im});
     box.querySelectorAll("img").forEach(function(im){var o=old[im.getAttribute("src")];if(o){o.className=im.className;o.alt=im.alt;im.replaceWith(o);delete old[im.getAttribute("src")]}})}
@@ -568,6 +575,11 @@ function calHTML(a,base,mode,attr){attr=attr||"day";
   }
   return h;
 }
+document.addEventListener("click",function(e){var b=e.target.closest("[data-bpick]");if(!b||!S.open)return;
+  S.pm=b.getAttribute("data-bpick");if(S.pm==="co"&&!S.ci)S.pm="ci";
+  var d=S.pm==="ci"?S.ci:S.co;if(d){var m=parse(d);S.calBase=new Date(m.getFullYear(),m.getMonth(),1)}
+  renderDetail();var c=layer.querySelector(".sheet .cals"),sh=layer.querySelector(".sheet");
+  if(c&&sh){var sec=c.closest(".sec")||c;var top=sec.getBoundingClientRect().top-sh.getBoundingClientRect().top+sh.scrollTop-76;sh.scrollTo({top:Math.max(0,top),behavior:"smooth"})}});
 function renderDetail(){
   var a=apts().find(function(x){return x.id===S.open});if(!a)return closeApt();
   var ph=a.photos||[],site=(draft||DATA).site;
@@ -584,14 +596,14 @@ function renderDetail(){
   if(FY.length)h+='<div class="facts2 num" style="--n:'+FY.length+'">'+FY.map(function(x){return '<div><i aria-hidden="true">'+FI[x[1]]+'</i><b>'+fmt(x[0])+'</b><span>'+x[2]+'</span></div>'}).join("")+'</div>';
   if(a.desc||a.desc_en)h+='<div class="sec"><h3>عن الشقة</h3>'+(LANG==="en"&&a.desc_en?'<p dir="ltr">'+esc(a.desc_en)+'</p>':'<p class="desc-ar" dir="rtl" lang="ar">'+esc(a.desc||a.desc_en)+'</p>')+'</div>';
   if((a.amen||[]).length){h+='<div class="sec"><h3>المرافق</h3><ul class="amen">';a.amen.forEach(function(m){h+='<li>'+esc(m)+'</li>'});h+='</ul></div>'}
-  h+='<div class="sec"><div class="cal-head"><h3>التواريخ المتاحة</h3><div style="display:flex;gap:6px"><button class="icon-btn" data-act="calprev" aria-label="الشهر السابق">›</button><button class="icon-btn" data-act="calnext" aria-label="الشهر التالي">‹</button></div></div><p class="note">اختر يوم الوصول ثم يوم المغادرة.</p><div class="cals">'+calHTML(a,S.calBase,"pick")+'</div><div class="legend"><span><i style="background:var(--bg);border:1px solid var(--line)"></i>متاح</span><span><i style="background:var(--booked)"></i>محجوز</span><span><i style="background:var(--pick)"></i>اختيارك</span>'+(hasDeals(a)?'<span><i class="deal-dot"></i>سعر مخفّض</span>':'')+'</div></div>';
+  h+='<div class="sec"><div class="cal-head"><h3>التواريخ المتاحة</h3><div style="display:flex;gap:6px"><button class="icon-btn" data-act="calprev" aria-label="الشهر السابق">›</button><button class="icon-btn" data-act="calnext" aria-label="الشهر التالي">‹</button></div></div><p class="note cal-hint'+(S.pm?' on':'')+'">'+(S.pm==="ci"?"اختر يوم الوصول الجديد.":S.pm==="co"?"اختر يوم المغادرة الجديد.":"اختر يوم الوصول ثم يوم المغادرة.")+'</p><div class="cals">'+calHTML(a,S.calBase,"pick")+'</div><div class="legend"><span><i style="background:var(--bg);border:1px solid var(--line)"></i>متاح</span><span><i style="background:var(--booked)"></i>محجوز</span><span><i style="background:var(--pick)"></i>اختيارك</span>'+(hasDeals(a)?'<span><i class="deal-dot"></i>سعر مخفّض</span>':'')+'</div></div>';
   h+='<div class="sec"><h3>الموقع</h3><p>'+esc([a.district,a.city].filter(Boolean).join("، "))+'</p>'+(safeUrl(a.map)?'<a class="map-btn" href="'+esc(safeUrl(a.map))+'" target="_blank" rel="noopener">'+ICON.pin+' افتح الموقع في الخرائط</a>':'<p class="note">يُرسل الموقع الدقيق بعد تأكيد الحجز.</p>')+'</div>';
   h+='<div class="sec"><h3>مواعيد الدخول والخروج</h3><p class="num">الدخول من الساعة '+t12(site.checkin||"16:00")+'، والخروج حتى الساعة '+t12(site.checkout||"12:00")+'.</p></div>'+policyHTML(site)+'</div>';
   // booking box
   var ok=S.ci&&S.co&&isFree(a,S.ci,S.co),pr=null,g=safeUrl(a.gathern);
   h+='<aside class="book"><div><div class="price"><span>السعر يظهر في جاذر إن عند الحجز</span></div></div>';
   
-  h+='<div class="dates num"><div><span>الوصول</span>'+fmtDate(S.ci)+'</div><div><span>المغادرة</span>'+fmtDate(S.co)+'</div></div>';
+  h+='<div class="dates num"><button type="button" data-bpick="ci" class="'+(S.pm==="ci"?"on":"")+'"><span>الوصول</span><b>'+(S.ci?fmtDate(S.ci):"اختر التاريخ")+'</b></button><button type="button" data-bpick="co" class="'+(S.pm==="co"?"on":"")+'"><span>المغادرة</span><b>'+(S.co?fmtDate(S.co):"اختر التاريخ")+'</b></button></div>';
   if(S.ci&&S.co&&!ok)h+='<div class="msg">الشقة محجوزة في بعض هذه الليالي. اختر تواريخ أخرى من التقويم.</div>';
   if(pr)h+='<div class="sum num"><div><span>'+(pr.nights===1?"ليلة واحدة":pr.nights===2?"ليلتان":pr.nights+(pr.nights<=10?" ليالٍ":" ليلة"))+'</span><span>'+fmt(pr.base>pr.total+1?pr.base:pr.total)+' ر.س</span></div>'+(pr.base>pr.total+1?'<div class="save"><span>'+(pr.label||'خصم على تواريخك')+'</span><span>− '+fmt(Math.round((pr.base-pr.total)*10)/10)+' ر.س</span></div>':'')+'<div class="total"><span>الإجمالي شامل الرسوم والضريبة</span><span>'+fmt(pr.total)+' ر.س</span></div></div>';
   else if(!S.ci||!S.co)h+='<p class="note">اختر تواريخك من التقويم للتأكد من التوفر.</p>';
@@ -612,6 +624,9 @@ function renderDetail(){
 }
 function pickDay(ds){
   var a=apts().find(function(x){return x.id===S.open});
+  if(S.pm==="ci"){if(bookedOf(a).indexOf(ds)>=0)return;S.ci=ds;if(S.co&&(S.co<=ds||!isFree(a,ds,S.co)))S.co=null;S.pm=S.co?null:"co";renderDetail();return}
+  if(S.pm==="co"&&S.ci&&ds>S.ci){if(isFree(a,S.ci,ds)){S.co=ds;S.pm=null}else{S.ci=ds;S.co=null}renderDetail();return}
+  S.pm=null;
   if(!S.ci||S.co||ds<=S.ci){if(bookedOf(a).indexOf(ds)>=0)return;S.ci=ds;S.co=null}
   else{if(isFree(a,S.ci,ds))S.co=ds;else{S.ci=ds;S.co=null}}
   renderDetail();
