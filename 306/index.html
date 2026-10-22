@@ -1,13 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.arch .state{animation:st-in .35s ease both}
-.arch .state.ld{width:62px;height:22px;padding:0;background:linear-gradient(90deg,rgba(243,231,191,.25) 0%,rgba(243,231,191,.75) 50%,rgba(243,231,191,.25) 100%);background-size:200% 100%;animation:st-sh 1.1s linear infinite}
-.ld-dots{display:inline-flex;gap:5px;align-items:center;height:1.7em}
-.ld-dots i{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.3;animation:ld-b 1s ease-in-out infinite}
-.ld-dots i:nth-child(2){animation-delay:.15s}.ld-dots i:nth-child(3){animation-delay:.3s}
-@keyframes st-sh{from{background-position:100% 0}to{background-position:-100% 0}}
-@keyframes st-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
-@keyframes ld-b{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-@media (prefers-reduced-motion:reduce){.arch .state,.arch .state.ld,.ld-dots i{animation:none}}
-</style></head><body>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <base href="/"><title>شقة 306 | place.n</title><!--og--><meta name="description" content="غرفة وصالة · حي سلطانة، بريدة · ★ 10 (49 تقييم) — شاهد التواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:site_name" content="place.n"><meta property="og:title" content="شقة 306 | place.n"><meta property="og:description" content="غرفة وصالة · حي سلطانة، بريدة · ★ 10 (49 تقييم) — شاهد التواريخ المتاحة واحجز عبر جاذر إن."><meta property="og:type" content="website"><meta property="og:url" content="https://place-n.com/306"><meta property="og:image" content="https://place-n.com/og/306.jpg?v=3"><meta property="og:image:width" content="800"><meta property="og:image:height" content="800"><meta property="og:locale" content="ar_SA"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://place-n.com/306"><!--/og--><meta name="theme-color" content="#181C21"><link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" href="favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <meta data-src="" name="claude:viewport-fit-sides" content="cover">
 <link data-src="" rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,8 +127,8 @@ footer .wrap{padding-bottom:96px}
 .d-head{display:grid;gap:6px;margin-top:22px}
 .d-head h2{font-size:clamp(24px,3vw,34px)}
 .d-head .where{color:var(--muted)}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-block:22px}
-.facts div{background:var(--bg);padding:12px 14px;display:grid}
+.facts{display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-block:22px}
+.facts div{background:var(--bg);padding:12px 14px;display:grid;flex:1 1 104px}
 .facts b{font-family:var(--f-display);font-weight:400;font-size:20px}
 .facts span{font-size:12.5px;color:var(--muted)}
 .sec{display:grid;gap:12px;padding-block:22px;border-top:1px solid var(--line)}
@@ -269,6 +260,35 @@ footer .wrap{padding-bottom:96px}
   .row .acts{grid-column:1/-1;justify-content:flex-start}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.mbar{display:none}
+@media (max-width:860px){
+  .mbar{display:flex;position:fixed;z-index:24;left:0;right:0;bottom:0;align-items:center;gap:12px;justify-content:space-between;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .mbar .cta{padding:11px 18px;font-size:15px;white-space:nowrap;flex:0 0 auto}
+  .mbar-d{font-size:13.5px;min-width:0}
+  .sheet .detail{padding-bottom:110px}
+  .wa-float{padding:13px;border-radius:50%}
+  .wa-float span{display:none}
+  body.sheet-open .wa-float{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:560px){
+  .intro{padding-block:20px 12px;gap:14px}
+  .intro h1{font-size:25px}
+  .intro p{font-size:13.5px;line-height:1.7}
+  .types{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  .types::-webkit-scrollbar{display:none}
+  .type-chip{flex:0 0 auto}
+  .filters-note{font-size:13px}
+  .grid{padding-top:0}
+}
+.arch .state{animation:st-in .35s ease both}
+.arch .state.ld{width:62px;height:22px;padding:0;background:linear-gradient(90deg,rgba(243,231,191,.25) 0%,rgba(243,231,191,.75) 50%,rgba(243,231,191,.25) 100%);background-size:200% 100%;animation:st-sh 1.1s linear infinite}
+.ld-dots{display:inline-flex;gap:5px;align-items:center;height:1.7em}
+.ld-dots i{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.3;animation:ld-b 1s ease-in-out infinite}
+.ld-dots i:nth-child(2){animation-delay:.15s}.ld-dots i:nth-child(3){animation-delay:.3s}
+@keyframes st-sh{from{background-position:100% 0}to{background-position:-100% 0}}
+@keyframes st-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes ld-b{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.arch .state,.arch .state.ld,.ld-dots i{animation:none}}
 </style>
 <div data-src="" id="app"></div>
 <div data-src="" id="layer"></div>
@@ -276,7 +296,7 @@ footer .wrap{padding-bottom:96px}
 (function(){
 "use strict";
 var DATA={site:{},apts:[]};
-var S={live:false,type:0,share:false,enh:true,dp:null,dpBase:null,ci:today(),co:addDays(today(),1),guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
+var S={live:false,type:0,share:false,enh:true,dp:null,dpBase:null,ci:null,co:null,guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
 var CAP={user:null,artifact:null,assets:null,canEdit:false};
 var draft=null;
 var AMEN=["واي فاي","دخول ذاتي","موقف خاص","مطبخ مجهز","غسالة ملابس","تلفزيون ذكي","تكييف مركزي","قهوة وشاي","جلسة خارجية","مسبح","مصعد","مناسب للعائلات","مكان عمل","مستلزمات استحمام"];
@@ -379,7 +399,7 @@ function render(){
 
 /* ---------- detail ---------- */
 function openApt(id){var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(location.pathname!==sl||location.hash)history.replaceState(null,"",sl)}catch(e){}document.body.style.overflow="hidden"}
-function closeApt(){S.open=null;layer.innerHTML="";document.body.style.overflow="";try{history.replaceState(null,"","/")}catch(e){}render()}
+function closeApt(){S.open=null;layer.innerHTML="";document.body.classList.remove("sheet-open");document.body.style.overflow="";try{history.replaceState(null,"","/")}catch(e){}render()}
 function calHTML(a,base,mode,attr){attr=attr||"day";
   var t=today(),b=bookedOf(a),sy=a.sync||[],h='';
   for(var k=0;k<2;k++){
@@ -433,7 +453,9 @@ function renderDetail(){
   if(ok){var ca=cancelInfo(site,S.ci);h+='<p class="cancel-note num'+(ca.past?' late':'')+'">'+(ca.past?'لا يمكن تعديل أو إلغاء الحجز لهذه التواريخ، لأن موعد الدخول بعد أقل من '+cancelHrs(site)+' ساعة.':'التعديل أو الإلغاء متاح حتى '+fmtDT(ca.dl)+'.')+'</p>'}
   var gl=g&&ok?g+(g.indexOf("?")<0?"?":"&")+"check_in="+S.ci+"&check_out="+S.co:g;
   h+='<a class="cta" '+(g?'href="'+esc(gl)+'" target="_blank" rel="noopener"':'aria-disabled="true"')+'>احجز عبر جاذر إن ↖</a>';
-  h+='<p class="note">'+(g?(ok?'تفتح صفحة الشقة في جاذر إن على تواريخك مباشرة، لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.':'سيتم تحويلك إلى منصة جاذر إن لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.'):'رابط الحجز لهذه الشقة لم يُضف بعد.')+'</p></aside></div></div>';
+  h+='<p class="note">'+(g?(ok?'تفتح صفحة الشقة في جاذر إن على تواريخك مباشرة، لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.':'سيتم تحويلك إلى منصة جاذر إن لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.'):'رابط الحجز لهذه الشقة لم يُضف بعد.')+'</p></aside></div>';
+  h+='<div class="mbar"><div class="mbar-d num">'+(S.ci&&S.co?(ok?parse(S.ci).getDate()+' '+MONTHS[parse(S.ci).getMonth()]+' ← '+parse(S.co).getDate()+' '+MONTHS[parse(S.co).getMonth()]+' · '+nightsBetween(S.ci,S.co).length+(nightsBetween(S.ci,S.co).length===1?' ليلة':nightsBetween(S.ci,S.co).length===2?' ليلتان':' ليالٍ'):'<span style="color:var(--danger)">محجوزة في تواريخك</span>'):(S.ci?'اختر يوم المغادرة':'اختر تواريخك'))+'</div>'+(g&&ok?'<a class="cta" href="'+esc(gl)+'" target="_blank" rel="noopener">احجز عبر جاذر إن ↖</a>':'<button class="cta" data-act="tocal">'+(S.ci&&S.co?'تواريخ أخرى':'اختر التواريخ')+'</button>')+'</div></div>';
+  document.body.classList.add("sheet-open");
   layer.innerHTML=h;
 }
 function pickDay(ds){
@@ -578,6 +600,7 @@ document.addEventListener("click",function(e){
     case "contact":break;
     case "clear":S.ci=S.co=null;S.dp=null;S.guests=0;S.type=0;render();break;
     case "close":closeApt();break;
+    case "tocal":(function(){var c=layer.querySelector(".detail .cals");if(c)c.scrollIntoView({behavior:"smooth",block:"center"})})();break;
     case "gprev":S.gi=(S.gi-1+apts().find(function(x){return x.id===S.open}).photos.length)%apts().find(function(x){return x.id===S.open}).photos.length;renderDetail();break;
     case "gnext":S.gi=(S.gi+1)%apts().find(function(x){return x.id===S.open}).photos.length;renderDetail();break;
     case "calprev":S.calBase=new Date(S.calBase.getFullYear(),S.calBase.getMonth()-1,1);draft&&S.edit!==null?renderAdmin():renderDetail();break;
