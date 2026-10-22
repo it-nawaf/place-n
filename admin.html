@@ -267,7 +267,7 @@ footer .wrap{padding-bottom:96px}
 (function(){
 "use strict";
 var DATA={site:{},apts:[]};
-var S={type:0,dist:"",share:false,enh:true,dp:null,dpBase:null,ci:today(),co:addDays(today(),1),guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
+var S={type:0,share:false,enh:true,dp:null,dpBase:null,ci:today(),co:addDays(today(),1),guests:0,open:null,gi:0,calBase:null,edit:null,tab:"apts",dirty:false,status:"",statusKind:"",busy:false};
 var CAP={user:null,artifact:null,assets:null,canEdit:false};
 var draft=null;
 var AMEN=["واي فاي","دخول ذاتي","موقف خاص","مطبخ مجهز","غسالة ملابس","تلفزيون ذكي","تكييف مركزي","قهوة وشاي","جلسة خارجية","مسبح","مصعد","مناسب للعائلات","مكان عمل","مستلزمات استحمام"];
@@ -330,16 +330,14 @@ function aptLink(a){return SITE_URL+"#"+a.id}
 function shareHTML(a){var l=aptLink(a),wa="https://wa.me/?text="+encodeURIComponent(a.name+" – place.n\n"+l);
   return '<div class="share-box"><label class="fld"><span>رابط الشقة</span><input id="share-url" readonly dir="ltr" value="'+esc(l)+'"></label><div class="share-acts"><button class="btn pri" data-act="copylink">نسخ الرابط</button><a class="btn wa-btn" href="'+esc(wa)+'" target="_blank" rel="noopener">إرسال عبر واتساب</a></div></div>'}
 var TYPES=[[1,"غرفة وصالة"],[2,"غرفتين وصالة"],[3,"ثلاث غرف وصالة"]];
-var DISTS=[["ريان", "حي الريان"], ["قرطبة", "حي قرطبة"], ["سلطانة", "حي السلطانة"]];
-function distKey(d){return String(d||"").replace(/^\s*حي\s+/,"").replace(/^ال/,"").trim()}
 function typeName(a){var r=+a.rooms;if(!r)return "";var f=TYPES.filter(function(x){return x[0]===r})[0];return f?f[1]:r+" غرف نوم وصالة"}
 function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 
 /* ---------- public page ---------- */
 function render(){
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
-  var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)&&(!S.dist||distKey(a.district)===S.dist)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
-  var hasF=S.ci&&S.co||S.guests||S.type||S.dist;
+  var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
+  var hasF=S.ci&&S.co||S.guests||S.type;
   var h='';
   h+='<header class="top"><div class="wrap"><a class="brand" href="#" data-act="home" aria-label="'+esc(site.name)+'">'+logo('role="img"')+'<small>'+esc(site.tagline)+'</small></a><nav><button class="theme-btn" data-act="theme" aria-label="'+(THEME==="dark"?"التبديل إلى الوضع الفاتح":"التبديل إلى الوضع الليلي")+'">'+(THEME==="dark"?SUN+'<span>فاتح</span>':MOON+'<span>ليلي</span>')+'</button><a class="link" href="#contact" data-act="contact">التواصل</a>'+(CAP.canEdit?'<button class="owner-btn" data-act="admin">إدارة الشقق</button>':'')+'</nav></div></header>';
   h+='<main><section class="wrap intro"><h1>'+esc(site.headline||"إقامة يومية بتفاصيل البيت")+'</h1><p>'+esc(site.about||"")+'</p>';
@@ -350,11 +348,10 @@ function render(){
     h+='<div class="dpop" role="dialog" aria-label="اختيار التواريخ"><div class="cal-head"><b class="dp-hint">'+(!S.ci||S.co&&S.dp==="ci"?"اختر يوم الوصول":"اختر يوم المغادرة")+'</b><div style="display:flex;gap:6px"><button type="button" class="icon-btn" data-act="dprev" aria-label="الشهر السابق">›</button><button type="button" class="icon-btn" data-act="dnext" aria-label="الشهر التالي">‹</button></div></div><div class="cals">'+calHTML({booked:[]},S.dpBase,"pick","sday")+'</div><div class="dp-foot"><span class="num">'+(nN?fmtDate(S.ci)+' ← '+fmtDate(S.co)+' · '+nN+' '+(nN===1?"ليلة":nN===2?"ليلتان":"ليالٍ"):"")+'</span><div style="display:flex;gap:8px">'+(S.ci?'<button type="button" class="btn" data-act="dreset">مسح التواريخ</button>':'')+'<button type="button" class="btn pri" data-act="dclose">تم</button></div></div></div>'}
   h+='</div>';
   h+='<div class="types" role="group" aria-label="نوع الشقة">'+[[0,"الكل"]].concat(TYPES).map(function(x){return '<button class="type-chip'+(S.type===x[0]?' on':'')+'" data-type="'+x[0]+'" aria-pressed="'+(S.type===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
-  h+='<div class="types" role="group" aria-label="الحي">'+[["","كل الأحياء"]].concat(DISTS).map(function(x){return '<button class="type-chip'+(S.dist===x[0]?' on':'')+'" data-dist="'+x[0]+'" aria-pressed="'+(S.dist===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
   h+='<div class="filters-note"><span class="num">'+(hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي'))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
   h+='<section class="wrap grid" aria-label="الشقق">';
   if(!list.length)h+='<div class="empty">لا توجد شقق معروضة بعد.'+(CAP.canEdit?' اضغط «إدارة الشقق» لإضافة أول شقة.':'')+'</div>';
-  else if(!filtered.length)h+='<div class="empty">'+(S.dist?'لا توجد حاليًا شقة'+(S.type?' من نوع «'+TYPES[S.type-1][1]+'»':'')+' في '+DISTS.filter(function(x){return x[0]===S.dist})[0][1]+'.':S.type?'لا توجد حاليًا شقة من نوع «'+TYPES[S.type-1][1]+'»'+(S.guests?' تتسع لهذا العدد من الضيوف':'')+'.':'لا توجد شقة تتسع لهذا العدد من الضيوف.')+'</div>';
+  else if(!filtered.length)h+='<div class="empty">'+(S.type?'لا توجد حاليًا شقة من نوع «'+TYPES[S.type-1][1]+'»'+(S.guests?' تتسع لهذا العدد من الضيوف':'')+'.':'لا توجد شقة تتسع لهذا العدد من الضيوف.')+'</div>';
   filtered.forEach(function(a){
     var p=(a.photos||[])[0],n=(a.photos||[]).length;
     var bk=S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(src(p))+'" alt="'+esc(a.name)+'" loading="lazy">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
@@ -576,10 +573,9 @@ function start(d){DATA=d;CAP.canEdit=true;CAP.artifact=true;render();openAdmin()
 /* ---------- events ---------- */
 document.addEventListener("click",function(e){
   if(S.dp&&!e.target.closest(".dpop,.dbtn")&&!draft&&!S.open){S.dp=null;render()}
-  var t=e.target.closest("[data-act],[data-open],[data-day],[data-sday],[data-gi],[data-tab],[data-ed],[data-del],[data-up],[data-pdel],[data-pfirst],[data-penh],[data-type],[data-dist],[data-dup],[data-qtype]");if(!t)return;
+  var t=e.target.closest("[data-act],[data-open],[data-day],[data-sday],[data-gi],[data-tab],[data-ed],[data-del],[data-up],[data-pdel],[data-pfirst],[data-penh],[data-type],[data-dup],[data-qtype]");if(!t)return;
   var d=t.dataset;
   if(d.type!==undefined&&t.classList.contains('type-chip')){S.type=+d.type;render();return}
-  if(d.dist!==undefined&&t.classList.contains('type-chip')){S.dist=d.dist;render();return}
   if(d.dup!==undefined){var src0=draft.apts[+d.dup],c=JSON.parse(JSON.stringify(src0));c.id=uid();c.name="";c.gathern="";c.ical="";c.ical2="";c.photos=[];c.booked=[];c.sync=[];["nightly","pre","rating","reviews","priceAt","checkAt","syncAt","sample"].forEach(function(k){delete c[k]});draft.apts.splice(+d.dup+1,0,c);S.edit=+d.dup+1;S.calBase=null;mark();renderAdmin();layer.querySelector(".panel").scrollTop=0;setStatus("نُسخت المواصفات. الصق رابطي جاذر إن وأضف الصور، ثم «حفظ ونشر».","");return}
   if(d.qtype!==undefined){var qa=draft.apts[S.edit],n=+d.qtype;qa.rooms=n;qa.halls=1;qa.beds=n;qa.baths=n;qa.guests={1:4,2:6,3:8}[n];mark();renderAdmin();return}
   if(d.open){openApt(d.open);return}
@@ -596,7 +592,7 @@ document.addEventListener("click",function(e){
   switch(d.act){
     case "home":e.preventDefault();window.scrollTo(0,0);break;
     case "contact":break;
-    case "clear":S.ci=S.co=null;S.dp=null;S.guests=0;S.type=0;S.dist="";render();break;
+    case "clear":S.ci=S.co=null;S.dp=null;S.guests=0;S.type=0;render();break;
     case "close":closeApt();break;
     case "gprev":S.gi=(S.gi-1+apts().find(function(x){return x.id===S.open}).photos.length)%apts().find(function(x){return x.id===S.open}).photos.length;renderDetail();break;
     case "gnext":S.gi=(S.gi+1)%apts().find(function(x){return x.id===S.open}).photos.length;renderDetail();break;
@@ -631,7 +627,6 @@ document.addEventListener("change",function(e){
   if(t.id==="s-ci"){S.ci=t.value||null;if(S.co&&S.ci&&S.co<=S.ci)S.co=null;var co=document.getElementById("s-co");if(co){co.min=S.ci?addDays(S.ci,1):addDays(today(),1);if(!S.co)co.value=""}}
   if(t.id==="s-co")S.co=t.value||null;
   if(t.id==="s-g")S.guests=+t.value;
-  if(t.id==="s-d"){S.dist=t.value;render();var gg=document.querySelector(".grid");if(gg&&S.dist)gg.scrollIntoView({behavior:"smooth",block:"start"})}
 });
 document.addEventListener("submit",function(e){if(e.target.id==="search"){e.preventDefault();S.dp=null;render();var g=document.querySelector(".grid");if(g)g.scrollIntoView({behavior:"smooth",block:"start"})}});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!draft&&!S.open){S.dp=null;render()}else if(draft)closeAdmin();else if(S.open)closeApt()}
