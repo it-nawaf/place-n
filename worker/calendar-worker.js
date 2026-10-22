@@ -2,7 +2,7 @@
 // Reads each apartment's Gathern / Airbnb calendar links from https://place-n.com/data.json
 // and returns the booked nights right now, so the site shows new bookings within minutes.
 //   GET https://placen-cal.blue-hill-91f0.workers.dev/          -> {updated, apts: {id: ["YYYY-MM-DD", ...]}, failed: [...]}
-//   GET https://cal.place-n.com/?id=abc   -> same, for one apartment
+//   GET https://placen-cal.blue-hill-91f0.workers.dev/?id=abc   -> same, for one apartment
 
 const SITE = "https://place-n.com";
 const ALLOWED = ["https://place-n.com", "https://www.place-n.com", "https://it-nawaf.github.io"];
@@ -46,9 +46,26 @@ export default {
   },
 };
 
+// Gathern serves an old cached copy of a calendar link for hours. Spelling the address a
+// little differently every 2 minutes (percent-encoding one character, which points to the
+// same file) gets a fresh copy each time.
+function fresh(link) {
+  const u = new URL(link);
+  const m = u.pathname.match(/^(.*\/)([^/]+)(\.ics)$/);
+  const bucket = Math.floor(Date.now() / 120000);
+  if (m && u.hostname.endsWith("gathern.co")) {
+    const name = decodeURIComponent(m[2]);
+    const i = bucket % name.length, j = (i + 1 + Math.floor(bucket / name.length) % (name.length - 1)) % name.length;
+    const spelled = [...name].map((c, k) => (k === i || k === j) ? "%" + c.charCodeAt(0).toString(16).toUpperCase().padStart(2, "0") : c).join("");
+    u.pathname = m[1] + spelled + m[3];
+  }
+  u.searchParams.set("_", String(bucket));
+  return u.toString();
+}
+
 async function readFeed(link) {
   try {
-    const r = await fetch(link, {
+    const r = await fetch(fresh(link), {
       headers: { "User-Agent": "Mozilla/5.0 (compatible; place-n-calendar/1.0)" },
       cf: { cacheTtl: FEED_CACHE, cacheEverything: true },
     });

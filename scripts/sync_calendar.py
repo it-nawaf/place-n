@@ -27,11 +27,21 @@ def nights(ics):
     return out
 
 
+def fresh(url, shift=0):
+    """Gathern serves an old cached copy of a calendar link for hours; percent-encoding two
+    characters of the file name (same file, new spelling) gets a fresh copy."""
+    b = int(time.time() // 120) + shift
+    m = re.match(r'(https://[^/]*gathern\.co/.*/)([^/?]+)(\.ics)(.*)$', url)
+    if m:
+        n = m.group(2); L = len(n); i = b % L; j = (i + 1 + (b // L) % (L - 1)) % L
+        url = m.group(1) + ''.join('%%%02X' % ord(c) if k in (i, j) else c for k, c in enumerate(n)) + m.group(3) + m.group(4)
+    return url + ('&' if '?' in url else '?') + f'_={b}'
+
+
 def fetch(url):
-    sep = '&' if '?' in url else '?'
     for attempt in range(2):
         try:
-            return nights(get(f'{url}{sep}_={int(time.time())}{attempt}'))
+            return nights(get(fresh(url, attempt * 7)))
         except Exception as e:  # network error -> retry once
             err = e
             time.sleep(2)
