@@ -1,7 +1,7 @@
 // place.n live calendar — Cloudflare Worker
 // Reads each apartment's Gathern / Airbnb calendar links from https://place-n.com/data.json
 // and returns the booked nights right now, so the site shows new bookings within minutes.
-//   GET https://cal.place-n.com/          -> {updated, apts: {id: ["YYYY-MM-DD", ...]}, failed: [...]}
+//   GET https://placen-cal.blue-hill-91f0.workers.dev/          -> {updated, apts: {id: ["YYYY-MM-DD", ...]}, failed: [...]}
 //   GET https://cal.place-n.com/?id=abc   -> same, for one apartment
 
 const SITE = "https://place-n.com";

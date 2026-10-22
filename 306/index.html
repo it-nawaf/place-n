@@ -605,7 +605,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!d
   if(S.open&&!draft&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){var a=apts().find(function(x){return x.id===S.open});if(a&&a.photos.length>1){S.gi=(S.gi+(e.key==="ArrowLeft"?1:-1)+a.photos.length)%a.photos.length;renderDetail()}}});
 window.addEventListener("hashchange",function(){var id=findKey(location.hash.slice(1));if(id)openApt(id)});
 
-function liveSync(){fetch("https://cal.place-n.com/",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.apts)return;var ch=false;DATA.apts.forEach(function(a){var l=j.apts[a.id];if(l&&JSON.stringify(l)!==JSON.stringify(a.sync||[])){a.sync=l;ch=true}});if(!ch)return;if(S.open)renderDetail();else if(!S.dp)render()}).catch(function(){})}
+function liveSync(){fetch("https://placen-cal.blue-hill-91f0.workers.dev/",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.apts)return;var ch=false;DATA.apts.forEach(function(a){var l=j.apts[a.id];if(l&&JSON.stringify(l)!==JSON.stringify(a.sync||[])){a.sync=l;ch=true}});if(!ch)return;if(S.open)renderDetail();else if(!S.dp)render()}).catch(function(){})}
 fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){DATA=d;render();liveSync();
   var id0=findKey(location.hash.slice(1))||findKey(location.pathname);if(id0)openApt(id0)}).catch(function(){app.innerHTML='<div class="wrap" style="padding:60px 0;text-align:center">تعذّر تحميل الشقق. حدّث الصفحة.</div>'});
 })();
