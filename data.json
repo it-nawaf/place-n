@@ -10,7 +10,7 @@
   "checkin": "16:00",
   "checkout": "12:00",
   "cancelHours": 48,
-  "rateAt": "20 أكتوبر، 8:34 م"
+  "rateAt": "22 أكتوبر، 8:04 م"
  },
  "apts": [
   {
@@ -233,7 +233,7 @@
    "ical": "https://gathern.co/ical/473767nWy7TMJh.ics",
    "booked": [],
    "rating": "9.8",
-   "reviews": 59,
+   "reviews": 61,
    "unit": "152385",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
@@ -425,7 +425,7 @@
    "ical": "https://gathern.co/ical/0932723KGLN6gG.ics",
    "booked": [],
    "rating": "10",
-   "reviews": 105,
+   "reviews": 106,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-10-18",
@@ -433,7 +433,8 @@
     "2026-10-20",
     "2026-10-21"
    ],
-   "syncAt": "22 أكتوبر، 8:02 م"
+   "syncAt": "22 أكتوبر، 8:02 م",
+   "unit": "180469"
   },
   {
    "id": "ad5atw2",
@@ -458,12 +459,13 @@
    "ical": "https://gathern.co/ical/943202aJ5g6uDz.ics",
    "booked": [],
    "rating": "9.9",
-   "reviews": 94,
+   "reviews": 95,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-10-21"
    ],
-   "syncAt": "22 أكتوبر، 8:02 م"
+   "syncAt": "22 أكتوبر، 8:02 م",
+   "unit": "177658"
   },
   {
    "id": "aqhuy75",
@@ -716,7 +718,7 @@
    ],
    "syncAt": "22 أكتوبر، 8:02 م",
    "rating": "10",
-   "reviews": 81,
+   "reviews": 83,
    "unit": "194499"
   },
   {
@@ -903,7 +905,7 @@
    ],
    "syncAt": "22 أكتوبر، 8:02 م",
    "rating": "9.9",
-   "reviews": 102,
+   "reviews": 103,
    "halls": 1,
    "checkAt": "21 أكتوبر، 9:14 م",
    "unit": "183969"
