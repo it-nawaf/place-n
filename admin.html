@@ -762,7 +762,7 @@ document.addEventListener("click",function(e){
     case "dreset":S.ci=S.co=null;S.dp="ci";render();break;
     case "dclose":S.dp=null;render();break;
     case "theme":THEME=THEME==="dark"?"light":"dark";try{localStorage.setItem("placen-theme",THEME)}catch(err){}applyTheme();render();break;
-    case "share":S.share=!S.share;renderDetail();if(S.share){var inp=document.getElementById("share-url");if(inp)inp.focus()}break;
+    case "share":var _sa=apts().find(function(x){return x.id===S.open});if(_sa&&navigator.share&&matchMedia("(pointer:coarse)").matches){navigator.share({title:_sa.name+" | place.n",url:aptLink(_sa)}).catch(function(){});break}S.share=!S.share;renderDetail();break;
     case "copylink":(function(){var inp=document.getElementById("share-url");var done=function(){t.textContent="تم نسخ الرابط ✓"};try{navigator.clipboard.writeText(inp.value).then(done,function(){inp.select()})}catch(err){inp.select()}})();break;
     case "admin":openAdmin();break;
     case "adclose":closeAdmin();break;
