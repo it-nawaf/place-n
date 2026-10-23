@@ -338,6 +338,7 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .dates button.on{background:color-mix(in srgb,var(--gold) 12%,transparent);box-shadow:inset 0 -2px 0 var(--gold)}.dates button.on span{color:var(--gold-ink)}
 .dates button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
 .cal-hint.on{color:var(--gold-ink);font-weight:500}
+.cal-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
 </style>
 <div data-src="" id="app"></div>
 <div data-src="" id="layer"></div>
@@ -483,6 +484,10 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-bpic
   var d=S.pm==="ci"?S.ci:S.co;if(d){var m=parse(d);S.calBase=new Date(m.getFullYear(),m.getMonth(),1)}
   renderDetail();var c=layer.querySelector(".sheet .cals"),sh=layer.querySelector(".sheet");
   if(c&&sh){var sec=c.closest(".sec")||c;var top=sec.getBoundingClientRect().top-sh.getBoundingClientRect().top+sh.scrollTop-76;sh.scrollTo({top:Math.max(0,top),behavior:"smooth"})}});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-cal]");if(!b||!S.open)return;var k=b.getAttribute("data-cal");
+  if(k==="reset"){S.ci=null;S.co=null;S.pm=null;renderDetail();return}
+  var sh=layer.querySelector(".sheet"),bk=layer.querySelector(".sheet .book");
+  if(sh&&bk){var top=bk.getBoundingClientRect().top-sh.getBoundingClientRect().top+sh.scrollTop-76;sh.scrollTo({top:Math.max(0,top),behavior:"smooth"})}});
 function renderDetail(){
   var a=apts().find(function(x){return x.id===S.open});if(!a)return closeApt();
   var ph=a.photos||[],site=(draft||DATA).site;
@@ -499,7 +504,7 @@ function renderDetail(){
   if(FY.length)h+='<div class="facts2 num" style="--n:'+FY.length+'">'+FY.map(function(x){return '<div><i aria-hidden="true">'+FI[x[1]]+'</i><b>'+fmt(x[0])+'</b><span>'+x[2]+'</span></div>'}).join("")+'</div>';
   if(a.desc)h+='<div class="sec"><h3>عن الشقة</h3><p>'+esc(a.desc)+'</p></div>';
   if((a.amen||[]).length){h+='<div class="sec"><h3>المرافق</h3><ul class="amen">';a.amen.forEach(function(m){h+='<li>'+esc(m)+'</li>'});h+='</ul></div>'}
-  h+='<div class="sec"><div class="cal-head"><h3>التواريخ المتاحة</h3><div style="display:flex;gap:6px"><button class="icon-btn" data-act="calprev" aria-label="الشهر السابق"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button class="icon-btn" data-act="calnext" aria-label="الشهر التالي"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div></div><p class="note cal-hint'+(S.pm?' on':'')+'">'+(S.pm==="ci"?"اختر يوم الوصول الجديد.":S.pm==="co"?"اختر يوم المغادرة الجديد.":"اختر يوم الوصول ثم يوم المغادرة.")+'</p><div class="cals">'+calHTML(a,S.calBase,"pick")+'</div><div class="legend"><span><i style="background:var(--bg);border:1px solid var(--line)"></i>متاح</span><span><i style="background:var(--booked)"></i>محجوز</span><span><i style="background:var(--pick)"></i>اختيارك</span>'+(hasDeals(a)?'<span><i class="deal-dot"></i>سعر مخفّض</span>':'')+'</div></div>';
+  h+='<div class="sec"><div class="cal-head"><h3>التواريخ المتاحة</h3><div style="display:flex;gap:6px"><button class="icon-btn" data-act="calprev" aria-label="الشهر السابق"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button class="icon-btn" data-act="calnext" aria-label="الشهر التالي"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div></div><p class="note cal-hint'+(S.pm?' on':'')+'">'+(S.pm==="ci"?"اختر يوم الوصول الجديد.":S.pm==="co"?"اختر يوم المغادرة الجديد.":"اختر يوم الوصول ثم يوم المغادرة.")+'</p><div class="cals">'+calHTML(a,S.calBase,"pick")+'</div><div class="legend"><span><i style="background:var(--bg);border:1px solid var(--line)"></i>متاح</span><span><i style="background:var(--booked)"></i>محجوز</span><span><i style="background:var(--pick)"></i>اختيارك</span>'+(hasDeals(a)?'<span><i class="deal-dot"></i>سعر مخفّض</span>':'')+'</div>'+(S.ci?'<div class="cal-foot"><span class="num">'+(S.ci&&S.co?(function(){var n=nightsBetween(S.ci,S.co).length;return fmtDate(S.ci)+' ← '+fmtDate(S.co)+' · '+n+' '+(n===1?"ليلة":n===2?"ليلتان":"ليالٍ")})():'')+'</span><div style="display:flex;gap:8px"><button type="button" class="btn" data-cal="reset">مسح التواريخ</button><button type="button" class="btn pri" data-cal="done">تم</button></div></div>':'')+'</div>';
   h+='<div class="sec"><h3>الموقع</h3><p>'+esc([a.district,a.city].filter(Boolean).join("، "))+'</p>'+(safeUrl(a.map)?'<a class="map-btn" href="'+esc(safeUrl(a.map))+'" target="_blank" rel="noopener">'+ICON.pin+' افتح الموقع في الخرائط</a>':'<p class="note">يُرسل الموقع الدقيق بعد تأكيد الحجز.</p>')+'</div>';
   h+='<div class="sec"><h3>مواعيد الدخول والخروج</h3><p class="num">الدخول من الساعة '+t12(site.checkin||"16:00")+'، والخروج حتى الساعة '+t12(site.checkout||"12:00")+'.</p></div>'+policyHTML(site)+'</div>';
   // booking box
