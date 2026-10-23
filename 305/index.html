@@ -280,7 +280,8 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
-.mbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important;transform:translateZ(0);will-change:transform;contain:layout paint}
+.mbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important}
+@media (max-width:860px){.sheet .mbar{position:sticky;left:auto;right:auto}.sheet .detail{padding-bottom:28px}}
 .sheet-bar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important}
 .arch{aspect-ratio:3/2!important}
 .g-main .g-count{direction:ltr;unicode-bidi:isolate;left:50%!important;right:auto!important;inset-inline-start:auto;transform:translateX(-50%)!important}
