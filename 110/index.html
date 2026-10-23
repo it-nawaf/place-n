@@ -280,6 +280,15 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
+.icon-btn{transition:transform .12s ease,background .15s,border-color .15s}
+[data-act$=prev]:active,[data-act$=next]:active,.icon-btn:active{transform:scale(.86);background:color-mix(in srgb,var(--gold) 22%,transparent)!important;border-color:var(--gold)!important}
+[data-act$=prev].tapped,[data-act$=next].tapped{animation:pn-tap .38s ease}
+@keyframes pn-tap{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 50%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+.cals.sl-next{animation:pn-sl-next .32s cubic-bezier(.2,.7,.2,1)}.cals.sl-prev{animation:pn-sl-prev .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes pn-sl-next{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+@keyframes pn-sl-prev{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+html[dir=ltr] .cals.sl-next{animation-name:pn-sl-prev}html[dir=ltr] .cals.sl-prev{animation-name:pn-sl-next}
+@media (prefers-reduced-motion:reduce){.cals.sl-next,.cals.sl-prev,[data-act$=prev].tapped,[data-act$=next].tapped{animation:none}}
 .chev{width:16px;height:16px;display:block}html[dir=ltr] .chev{transform:scaleX(-1)}
 html,body{overflow-x:clip}.intro h1{overflow:hidden;text-overflow:clip}
 .top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}html{scroll-padding-top:80px}.grid,#contact{scroll-margin-top:80px}
@@ -509,6 +518,10 @@ function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
   addEventListener("scroll",function(e){var el=e.target;if(el===document||el===document.documentElement){var y=window.scrollY;if(y===0&&ws>300&&Date.now()-lt>700&&!S.open){window.scrollTo(0,ws);return}ws=y;return}
     if(el&&el.classList&&el.classList.contains("sheet")){var t=el.scrollTop;if(t===0&&ss>300&&Date.now()-lt>700&&!el._jump){el.scrollTop=ss;return}ss=t;el._jump=false}},true);
   window._pnResetSheet=function(){ss=0}})();
+document.addEventListener("click",function(e){var b=e.target.closest('[data-act="calnext"],[data-act="calprev"],[data-act="dnext"],[data-act="dprev"]');if(!b)return;
+  var act=b.getAttribute("data-act"),dir=/next$/.test(act)?"sl-next":"sl-prev";try{navigator.vibrate&&navigator.vibrate(8)}catch(x){}
+  setTimeout(function(){var nb=document.querySelector('[data-act="'+act+'"]');if(nb){nb.classList.remove("tapped");void nb.offsetWidth;nb.classList.add("tapped")}
+    var c=document.querySelector(/^cal/.test(act)?".sheet .cals":".dpop .cals");if(c){c.classList.remove("sl-next","sl-prev");void c.offsetWidth;c.classList.add(dir)}},0)},true);
 function fitH1(){var h=app.querySelector(".intro h1");if(!h)return;h.style.fontSize="";if(getComputedStyle(h).whiteSpace!=="nowrap")return;var f=parseFloat(getComputedStyle(h).fontSize);while(h.scrollWidth>h.clientWidth+1&&f>15){f-=.5;h.style.fontSize=f+"px"}}
 try{document.fonts&&document.fonts.ready.then(function(){fitH1()});addEventListener("resize",function(){if(!S.open)fitH1()})}catch(e){}
 function paint(h){var box=document.createElement("div");box.innerHTML=h;tr(box);

@@ -280,6 +280,15 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
+.icon-btn{transition:transform .12s ease,background .15s,border-color .15s}
+[data-act$=prev]:active,[data-act$=next]:active,.icon-btn:active{transform:scale(.86);background:color-mix(in srgb,var(--gold) 22%,transparent)!important;border-color:var(--gold)!important}
+[data-act$=prev].tapped,[data-act$=next].tapped{animation:pn-tap .38s ease}
+@keyframes pn-tap{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 50%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+.cals.sl-next{animation:pn-sl-next .32s cubic-bezier(.2,.7,.2,1)}.cals.sl-prev{animation:pn-sl-prev .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes pn-sl-next{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+@keyframes pn-sl-prev{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+html[dir=ltr] .cals.sl-next{animation-name:pn-sl-prev}html[dir=ltr] .cals.sl-prev{animation-name:pn-sl-next}
+@media (prefers-reduced-motion:reduce){.cals.sl-next,.cals.sl-prev,[data-act$=prev].tapped,[data-act$=next].tapped{animation:none}}
 .chev{width:16px;height:16px;display:block}html[dir=ltr] .chev{transform:scaleX(-1)}
 html,body{overflow-x:clip}.intro h1{overflow:hidden;text-overflow:clip}
 .top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}html{scroll-padding-top:80px}.grid,#contact{scroll-margin-top:80px}
