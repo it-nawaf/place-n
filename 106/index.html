@@ -453,6 +453,9 @@ var EN_RE=[
 [/^شقة (\S+)( \| place\.n)?$/,"Apartment $1$2"],
 [/^(\d+) صور$/,"$1 photos"],[/^صورة (\d+)$/,"Photo $1"],
 [/^التعديل أو الإلغاء متاح حتى (.+)\.$/,"Free changes or cancellation until $1."],
+[/^يمكنك إلغاء أو تأجيل الحجز مجانًا قبل تاريخ (.+)\.$/,"Free cancellation or rescheduling before $1."],
+[/^لا يمكن إلغاء أو تأجيل الحجز لهذه التواريخ، .*$/,"These dates can no longer be cancelled or rescheduled: check-in is too close."],
+[/^يمكنك إلغاء أو تأجيل الحجز مجانًا قبل (.+) من تاريخ الدخول\..*$/,function(m,d){var n=d==="يومين"?2:d==="يوم"?1:parseInt(d,10)||d;return "Free cancellation or rescheduling up to "+n+(n===1?" day":" days")+" before the check-in date. After that, bookings can't be cancelled or rescheduled."}],
 [/^لا يمكن تعديل أو إلغاء الحجز لهذه التواريخ، لأن موعد الدخول بعد أقل من (\d+) ساعة\.$/,"These dates can't be changed or cancelled: check-in is less than $1 hours away."],
 [/^يمكن تعديل الحجز أو إلغاؤه حتى (\d+) ساعة قبل موعد الدخول\..*$/,"Bookings can be changed or cancelled up to $1 hours before check-in. After that, they can't be changed or cancelled."],
 [/^الدخول من الساعة (.+)، والخروج حتى الساعة (.+)\.$/,"Check-in from $1, check-out by $2."],
@@ -529,9 +532,10 @@ function t12(s){if(LANG==="en"){var q=String(s||"").split(":"),hh=+q[0],mm=q[1]|
 function fmtPhone(n){n=String(n).replace(/\D/g,"");var m=n.match(/^966(\d{2})(\d{3})(\d{4})$/);return m?"+966 "+m[1]+" "+m[2]+" "+m[3]:"+"+n}
 function waLink(n,msg){return "https://wa.me/"+n+"?text="+encodeURIComponent(msg||(LANG==="en"?"Hello, I'm interested in place.n apartments":"السلام عليكم، أستفسر عن شقق place.n"))}
 function cancelHrs(site){var h=parseInt(site.cancelHours,10);return h>0?h:48}
-function cancelInfo(site,ci){var p=String(site.checkin||"16:00").split(":"),d=parse(ci);d.setHours(+p[0]||0,+p[1]||0,0,0);var dl=new Date(d.getTime()-cancelHrs(site)*3600e3);return {dl:dl,past:dl<new Date()}}
+function cancelDays(site){return Math.max(1,Math.round(cancelHrs(site)/24))}
+function cancelInfo(site,ci){var d=parse(ci);d.setHours(0,0,0,0);var dl=new Date(d.getFullYear(),d.getMonth(),d.getDate()-cancelDays(site));return {dl:dl,past:new Date()>=dl}}
 function fmtDT(d){if(LANG==="en")return DAYS[d.getDay()]+" "+d.getDate()+" "+MONTHS[d.getMonth()]+", "+t12(d.getHours()+":"+String(d.getMinutes()).padStart(2,"0"));return DAYS[d.getDay()]+" "+d.getDate()+" "+MONTHS[d.getMonth()]+"، الساعة "+t12(d.getHours()+":"+String(d.getMinutes()).padStart(2,"0"))}
-function policyHTML(site){var h=cancelHrs(site);return '<div class="sec"><h3>سياسة الإلغاء</h3><p class="num">يمكن تعديل الحجز أو إلغاؤه حتى '+h+' ساعة قبل موعد الدخول. إذا بقي أقل من '+h+' ساعة على موعد الدخول فلا يمكن تعديل الحجز أو إلغاؤه.</p></div>'}
+function policyHTML(site){var h=cancelHrs(site);return '<div class="sec"><h3>سياسة الإلغاء</h3><p class="num">يمكنك إلغاء أو تأجيل الحجز مجانًا قبل '+(cancelDays(site)===2?'يومين':cancelDays(site)===1?'يوم':cancelDays(site)+' أيام')+' من تاريخ الدخول. بعد ذلك لا يمكن إلغاء الحجز أو تأجيله.</p></div>'}
 function rateHTML(a,big){if(!a.rating)return "";return '<div class="rate'+(big?' big':'')+'"><span class="star" aria-hidden="true">★</span><b class="num">'+esc(a.rating)+'</b>'+(a.reviews?'<span class="num">('+fmt(a.reviews)+' تقييم'+(big?' في جاذر إن':'')+')</span>':'')+'</div>'}
 var SITE_URL="https://place-n.com/";
 function slug(a){var m=String(a.name||"").match(/\d+/g);return m?m[m.length-1]:a.id}
@@ -699,7 +703,7 @@ function renderDetail(){setTimeout(preloadNb,60);
   if(S.ci&&S.co&&!ok)h+='<div class="msg">الشقة محجوزة في بعض هذه الليالي. اختر تواريخ أخرى من التقويم.</div>';
   if(pr)h+='<div class="sum num"><div><span>'+(pr.nights===1?"ليلة واحدة":pr.nights===2?"ليلتان":pr.nights+(pr.nights<=10?" ليالٍ":" ليلة"))+'</span><span>'+fmt(pr.base>pr.total+1?pr.base:pr.total)+' ر.س</span></div>'+(pr.base>pr.total+1?'<div class="save"><span>'+(pr.label||'خصم على تواريخك')+'</span><span>− '+fmt(Math.round((pr.base-pr.total)*10)/10)+' ر.س</span></div>':'')+'<div class="total"><span>الإجمالي شامل الرسوم والضريبة</span><span>'+fmt(pr.total)+' ر.س</span></div></div>';
   else if(!S.ci||!S.co)h+='<p class="note">اختر تواريخك من التقويم للتأكد من التوفر.</p>';
-  if(ok){var ca=cancelInfo(site,S.ci);h+='<p class="cancel-note num'+(ca.past?' late':'')+'">'+(ca.past?'لا يمكن تعديل أو إلغاء الحجز لهذه التواريخ، لأن موعد الدخول بعد أقل من '+cancelHrs(site)+' ساعة.':'التعديل أو الإلغاء متاح حتى '+fmtDT(ca.dl)+'.')+'</p>'}
+  if(ok){var ca=cancelInfo(site,S.ci);h+='<p class="cancel-note num'+(ca.past?' late':'')+'">'+(ca.past?'لا يمكن إلغاء أو تأجيل الحجز لهذه التواريخ، لأن موعد الدخول بعد أقل من '+(cancelDays(site)===2?'يومين':cancelDays(site)===1?'يوم':cancelDays(site)+' أيام')+'.':'يمكنك إلغاء أو تأجيل الحجز مجانًا قبل تاريخ '+sDate(iso(ca.dl))+'.')+'</p>'}
   var gl=g&&ok?g+(g.indexOf("?")<0?"?":"&")+"check_in="+S.ci+"&check_out="+S.co:g;
   h+='<a class="cta" '+(g?'href="'+esc(gl)+'" target="_blank" rel="noopener"':'aria-disabled="true"')+'>احجز عبر جاذر إن ↖</a>';
   h+='<p class="note">'+(g?(ok?'تفتح صفحة الشقة في جاذر إن على تواريخك مباشرة، لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.':'سيتم تحويلك إلى منصة جاذر إن لتأكيد الحجز والدفع. السعر النهائي يظهر هناك.'):'رابط الحجز لهذه الشقة لم يُضف بعد.')+'</p></aside></div>';
