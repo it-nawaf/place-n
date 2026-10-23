@@ -280,6 +280,8 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
+@media (min-width:861px){footer .wrap.ft{display:grid;align-items:start;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"brand contact" "times contact";row-gap:18px}
+.ft-brand{grid-area:brand}.ft-contact{grid-area:contact;justify-self:end}.ft-times{grid-area:times;grid-template-columns:repeat(2,max-content);justify-content:start}}
 .ft-tel{font-weight:500;font-size:15px;color:inherit!important;text-decoration:none;border-bottom:1px dashed color-mix(in srgb,var(--gold) 55%,transparent)}.ft-tel:active{opacity:.7}@media (max-width:860px){.ft-tel{font-size:17px;letter-spacing:.3px}}
 .intro{grid-template-columns:minmax(0,1fr)}.intro>*{min-width:0}
 .mbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important}
