@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install --quiet pillow
+      - name: Shrink new photos
+        run: python3 scripts/optimize_img.py
       - name: Make apartment pages
         run: python3 scripts/gen_pages.py
       - name: Commit changes

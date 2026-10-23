@@ -476,6 +476,8 @@ function today(){return iso(new Date())}
 function fmt(n){return Number(n||0).toLocaleString("ar-SA-u-nu-latn")}
 function fmtDate(s){if(!s)return "—";var d=parse(s);return DAYS[d.getDay()]+" "+d.getDate()+" "+MONTHS[d.getMonth()]}
 function nightsBetween(a,b){var r=[];for(var d=a;d<b;d=addDays(d,1))r.push(d);return r}
+function thumb(p){if(!p||p._pv)return src(p);if(p.a)return "img/t/"+p.a+".jpg";if(p.f&&/^img\/[^\/]+\.jpe?g$/i.test(p.f))return "img/t/"+p.f.slice(4);return src(p)}
+function imgFallback(p){return thumb(p)!==src(p)?' onerror="this.onerror=null;this.src=\''+esc(src(p))+'\'"':""}
 function src(p){if(!p)return "";if(p._pv)return p._pv;if(p.f)return p.f;if(p.a)return "img/"+p.a+".jpg";return p.d||""}
 function apts(){return (draft||DATA).apts}
 function bookedOf(a){return (a.booked||[]).concat(a.sync||[])}
@@ -559,7 +561,7 @@ function render(){
   else if(!filtered.length)h+='<div class="empty">'+(S.type?'لا توجد حاليًا شقة من نوع «'+TYPES[S.type-1][1]+'»'+(S.guests?' تتسع لهذا العدد من الضيوف':'')+'.':'لا توجد شقة تتسع لهذا العدد من الضيوف.')+'</div>';
   filtered.forEach(function(a){
     var p=(a.photos||[])[0],n=(a.photos||[]).length;
-    var bk=S.live&&S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(src(p))+'" alt="'+esc(a.name)+'" loading="lazy">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(!S.live&&S.ci&&S.co?'<span class="state ld" aria-hidden="true"></span>':S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
+    var bk=S.live&&S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(thumb(p))+'"'+imgFallback(p)+' alt="'+esc(a.name)+'" loading="lazy" decoding="async">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(!S.live&&S.ci&&S.co?'<span class="state ld" aria-hidden="true"></span>':S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
     h+='<div>'+(typeName(a)?'<div class="type-tag">'+typeName(a)+'</div>':'')+'<h3>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h3><div class="meta">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+rateHTML(a)+'</div>';
     h+='<div class="meta num">'+(a.halls?'<span>'+ICON.sofa+' '+fmt(a.halls)+(+a.halls===1?' صالة':' صالات')+'</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+(+a.rooms===1?' غرفة':' غرف')+'</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+(+a.baths===1?' دورة مياه':' دورات مياه')+'</span>':'')+'</div>';
     h+='<div class="price"><span>السعر والحجز عبر جاذر إن</span></div></button>';
@@ -614,13 +616,14 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-cal]
   if(k==="reset"){S.ci=null;S.co=null;S.pm=null;renderDetail();return}
   var sh=layer.querySelector(".sheet"),bk=layer.querySelector(".sheet .book");
   if(sh&&bk){var top=bk.getBoundingClientRect().top-sh.getBoundingClientRect().top+sh.scrollTop-76;sh.scrollTo({top:Math.max(0,top),behavior:"smooth"})}});
-function renderDetail(){
+function preloadNb(){try{var a=apts().find(function(x){return x.id===S.open});var ph=(a&&a.photos)||[];if(ph.length<2)return;[1,-1,2].forEach(function(k){var p=ph[(S.gi+k+ph.length*2)%ph.length];var im=new Image();im.decoding="async";im.src=src(p)})}catch(e){}}
+function renderDetail(){setTimeout(preloadNb,60);
   var a=apts().find(function(x){return x.id===S.open});if(!a)return closeApt();
   var ph=a.photos||[],site=(draft||DATA).site;
   if(!S.calBase){var b=S.ci?parse(S.ci):new Date();S.calBase=new Date(b.getFullYear(),b.getMonth(),1)}
   var h='<div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(a.name)+'"><div class="sheet-bar"><div class="wrap"><button class="icon-btn" data-act="close" aria-label="رجوع">→</button><a href="/" class="bar-logo" data-act="home" aria-label="الصفحة الرئيسية">'+logo('style="width:90px;height:26px" aria-hidden="true"')+'</a><button class="icon-btn" data-act="share" aria-label="مشاركة الشقة">'+ICON.share+'</button></div></div>';
   h+='<div class="wrap detail"><div style="min-width:0"><div class="gallery"><div class="g-main">'+(ph.length?'<img src="'+esc(src(ph[S.gi]))+'" alt="'+esc(a.name)+'">':phHTML())+(ph.length>1?'<button class="g-nav prev" data-act="gprev" aria-label="الصورة السابقة"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button class="g-nav next" data-act="gnext" aria-label="الصورة التالية"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><span class="g-count num">'+(S.gi+1)+' / '+ph.length+'</span>':'')+'</div>';
-  if(ph.length>1){h+='<div class="thumbs">';ph.forEach(function(p,i){h+='<button class="'+(i===S.gi?"on":"")+'" data-gi="'+i+'" aria-label="صورة '+(i+1)+'"><img src="'+esc(src(p))+'" alt="" loading="lazy"></button>'});h+='</div>'}
+  if(ph.length>1){h+='<div class="thumbs">';ph.forEach(function(p,i){h+='<button class="'+(i===S.gi?"on":"")+'" data-gi="'+i+'" aria-label="صورة '+(i+1)+'"><img src="'+esc(thumb(p))+'"'+imgFallback(p)+' alt="" loading="lazy" decoding="async"></button>'});h+='</div>'}
   h+='</div><div class="d-head"><h2>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h2><div class="where">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+(a.rating?'<div class="rate-row">'+rateHTML(a,true)+(safeUrl(a.gathern)?'<a href="'+esc(safeUrl(a.gathern))+'" target="_blank" rel="noopener">قراءة التقييمات في جاذر إن ↖</a>':'')+'</div>':'')+'<button class="share-btn" data-act="share" aria-expanded="'+S.share+'">'+ICON.share+'<span>مشاركة الشقة</span></button>'+(S.share?shareHTML(a):'')+'</div>';
   var FX=[[a.guests,"ضيوف كحد أقصى"],[a.rooms,"غرف نوم"],[a.halls,+a.halls>1?"صالات":"صالة"],[a.beds,"أسرّة"],[a.baths,"دورات مياه"]].filter(function(x){return x[0]});
   var FI={g:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17.5 14.2a5.2 5.2 0 0 1 3 4.8"/></svg>',
