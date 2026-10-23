@@ -340,6 +340,13 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .cal-hint.on{color:var(--gold-ink);font-weight:500}
 .cal-next{font-weight:500;color:var(--gold-ink)}
 .cal-foot{display:grid;gap:12px;justify-items:start;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
+.pick-hint{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:9px;color:var(--gold-ink);font-size:14px;font-weight:500;line-height:1.5;padding:9px 14px;border:1px dashed color-mix(in srgb,var(--gold) 60%,transparent);border-radius:12px;background:color-mix(in srgb,var(--gold) 7%,transparent);max-width:100%}
+.pick-hint svg{width:20px;height:20px;flex:0 0 auto}.pick-hint:hover{background:color-mix(in srgb,var(--gold) 13%,transparent)}
+.pick-hint:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.filters-note:has(.pick-hint){width:100%}.filters-note:has(.pick-hint)>.num{flex:1 1 100%}.filters-note .pick-hint{width:100%}
+.search.nudge{animation:pn-nudge .45s ease}
+@keyframes pn-nudge{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.search.nudge{animation:none}}
 </style>
 <div data-src="" id="app"></div>
 <div data-src="" id="layer"></div>
@@ -428,7 +435,7 @@ function render(){
     h+='<div class="dpop" role="dialog" aria-label="اختيار التواريخ"><div class="cal-head">'+dpSteps()+'<div style="display:flex;gap:6px"><button type="button" class="icon-btn" data-act="dprev" aria-label="الشهر السابق"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button type="button" class="icon-btn" data-act="dnext" aria-label="الشهر التالي"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div></div><div class="cals">'+calHTML({booked:[]},S.dpBase,"pick","sday")+'</div><div class="dp-foot"><span class="num">'+(nN?fmtDate(S.ci)+' ← '+fmtDate(S.co)+' · '+nN+' '+(nN===1?"ليلة":nN===2?"ليلتان":"ليالٍ"):"")+'</span><div style="display:flex;gap:8px">'+(S.ci?'<button type="button" class="btn" data-act="dreset">مسح التواريخ</button>':'')+'<button type="button" class="btn pri" data-act="dclose">تم</button></div></div></div>'}
   h+='</div>';
   h+='<div class="types" role="group" aria-label="نوع الشقة">'+[[0,"الكل"]].concat(TYPES).map(function(x){return '<button class="type-chip'+(S.type===x[0]?' on':'')+'" data-type="'+x[0]+'" aria-pressed="'+(S.type===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
-  h+='<div class="filters-note"><span class="num">'+(hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي'))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
+  h+='<div class="filters-note"><span class="num">'+((!(S.ci&&S.co)?'<button type="button" class="pick-hint" data-act="dpick" data-which="'+(S.ci?'co':'ci')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>'+(S.ci?'اختر تاريخ المغادرة لعرض الشقق المتاحة':'اختر تاريخ الوصول والمغادرة لعرض الشقق المتاحة')+'</span></button>':'')||(hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي')))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
   h+='<section class="wrap grid" aria-label="الشقق">';
   if(!list.length)h+='<div class="empty">لا توجد شقق معروضة بعد.'+(CAP.canEdit?' اضغط «إدارة الشقق» لإضافة أول شقة.':'')+'</div>';
   else if(!filtered.length)h+='<div class="empty">'+(S.type?'لا توجد حاليًا شقة من نوع «'+TYPES[S.type-1][1]+'»'+(S.guests?' تتسع لهذا العدد من الضيوف':'')+'.':'لا توجد شقة تتسع لهذا العدد من الضيوف.')+'</div>';
@@ -734,7 +741,7 @@ document.addEventListener("change",function(e){
   if(t.id==="s-co")S.co=t.value||null;
   if(t.id==="s-g")S.guests=+t.value;
 });
-document.addEventListener("submit",function(e){if(e.target.id==="search"){e.preventDefault();S.dp=null;render();var g=document.querySelector(".grid");if(g)g.scrollIntoView({behavior:"smooth",block:"start"})}});
+document.addEventListener("submit",function(e){if(e.target.id==="search"){e.preventDefault();if(!S.ci||!S.co){S.dp=S.ci?"co":"ci";if(!S.dpBase){var _b=S.ci?parse(S.ci):new Date();S.dpBase=new Date(_b.getFullYear(),_b.getMonth(),1)}render();var sw=document.querySelector(".search");if(sw){sw.classList.remove("nudge");void sw.offsetWidth;sw.classList.add("nudge")}return}S.dp=null;render();var g=document.querySelector(".grid");if(g)g.scrollIntoView({behavior:"smooth",block:"start"})}});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!draft&&!S.open){S.dp=null;render()}else if(draft)closeAdmin();else if(S.open)closeApt()}
   if(S.open&&!draft&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){var a=apts().find(function(x){return x.id===S.open});if(a&&a.photos.length>1){S.gi=(S.gi+(e.key==="ArrowLeft"?1:-1)+a.photos.length)%a.photos.length;renderDetail()}}});
 window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h&&apts().some(function(a){return a.id===h}))openApt(h)});
