@@ -510,7 +510,7 @@ function calHTML(a,base,mode,attr){attr=attr||"day";
   for(var k=0;k<2;k++){
     var m=new Date(base.getFullYear(),base.getMonth()+k,1);
     h+='<div class="cal"><h4>'+MONTHS[m.getMonth()]+' '+m.getFullYear()+'</h4><div class="cal-grid">';
-    DAYS.forEach(function(d){h+='<div class="dn">'+d.slice(0,2)+'</div>'});
+    DAYS.forEach(function(d){h+='<div class="dn">'+((typeof LANG!=="undefined"&&LANG==="en")?d.slice(0,3):d)+'</div>'});
     for(var i=0;i<m.getDay();i++)h+='<div></div>';
     var last=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
     for(var d=1;d<=last;d++){
