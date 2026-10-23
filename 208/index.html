@@ -347,6 +347,7 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .search.nudge{animation:pn-nudge .45s ease}
 @keyframes pn-nudge{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
 @media (prefers-reduced-motion:reduce){.search.nudge{animation:none}}
+.bar-logo{display:inline-flex;color:inherit;padding:6px;border-radius:10px;transition:transform .12s}.bar-logo:active{transform:scale(.94)}
 .arch .state{animation:st-in .35s ease both}
 .arch .state.ld{width:62px;height:22px;padding:0;background:linear-gradient(90deg,rgba(243,231,191,.25) 0%,rgba(243,231,191,.75) 50%,rgba(243,231,191,.25) 100%);background-size:200% 100%;animation:st-sh 1.1s linear infinite}
 .ld-dots{display:inline-flex;gap:5px;align-items:center;height:1.7em}
@@ -616,7 +617,7 @@ function renderDetail(){
   var a=apts().find(function(x){return x.id===S.open});if(!a)return closeApt();
   var ph=a.photos||[],site=(draft||DATA).site;
   if(!S.calBase){var b=S.ci?parse(S.ci):new Date();S.calBase=new Date(b.getFullYear(),b.getMonth(),1)}
-  var h='<div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(a.name)+'"><div class="sheet-bar"><div class="wrap"><button class="icon-btn" data-act="close" aria-label="رجوع">→</button>'+logo('style="width:90px;height:26px" aria-hidden="true"')+'<button class="icon-btn" data-act="share" aria-label="مشاركة الشقة">'+ICON.share+'</button></div></div>';
+  var h='<div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(a.name)+'"><div class="sheet-bar"><div class="wrap"><button class="icon-btn" data-act="close" aria-label="رجوع">→</button><a href="/" class="bar-logo" data-act="home" aria-label="الصفحة الرئيسية">'+logo('style="width:90px;height:26px" aria-hidden="true"')+'</a><button class="icon-btn" data-act="share" aria-label="مشاركة الشقة">'+ICON.share+'</button></div></div>';
   h+='<div class="wrap detail"><div style="min-width:0"><div class="gallery"><div class="g-main">'+(ph.length?'<img src="'+esc(src(ph[S.gi]))+'" alt="'+esc(a.name)+'">':phHTML())+(ph.length>1?'<button class="g-nav prev" data-act="gprev" aria-label="الصورة السابقة"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button class="g-nav next" data-act="gnext" aria-label="الصورة التالية"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><span class="g-count num">'+(S.gi+1)+' / '+ph.length+'</span>':'')+'</div>';
   if(ph.length>1){h+='<div class="thumbs">';ph.forEach(function(p,i){h+='<button class="'+(i===S.gi?"on":"")+'" data-gi="'+i+'" aria-label="صورة '+(i+1)+'"><img src="'+esc(src(p))+'" alt="" loading="lazy"></button>'});h+='</div>'}
   h+='</div><div class="d-head"><h2>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h2><div class="where">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+(a.rating?'<div class="rate-row">'+rateHTML(a,true)+(safeUrl(a.gathern)?'<a href="'+esc(safeUrl(a.gathern))+'" target="_blank" rel="noopener">قراءة التقييمات في جاذر إن ↖</a>':'')+'</div>':'')+'<button class="share-btn" data-act="share" aria-expanded="'+S.share+'">'+ICON.share+'<span>مشاركة الشقة</span></button>'+(S.share?shareHTML(a):'')+'</div>';
@@ -795,7 +796,7 @@ document.addEventListener("click",function(e){
   if(d.sday){var ds=d.sday;if(S.dp==="ci"||!S.ci||ds<=S.ci||(S.ci&&S.co&&S.dp!=="co")){S.ci=ds;if(S.co&&S.co<=ds)S.co=null;S.dp="co"}else{S.co=ds;S.dp=null}render();return}
   if(d.day){if(S.edit!==null&&draft){var a=draft.apts[S.edit];a.booked=a.booked||[];var k=a.booked.indexOf(d.day);if(k>=0)a.booked.splice(k,1);else a.booked.push(d.day);a.booked.sort();mark();document.getElementById("ed-cal").innerHTML=calHTML(a,S.calBase,"toggle")}else pickDay(d.day);return}
   switch(d.act){
-    case "home":e.preventDefault();window.scrollTo(0,0);break;
+    case "home":e.preventDefault();try{history.scrollRestoration="manual"}catch(x){}if(S.open){closeApt();setTimeout(function(){window.scrollTo({top:0,behavior:"smooth"})},80)}else window.scrollTo({top:0,behavior:"smooth"});break;
     case "contact":break;
     case "clear":S.ci=S.co=null;S.dp=null;S.guests=0;S.type=0;render();break;
     case "close":closeApt();break;
