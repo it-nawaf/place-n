@@ -366,6 +366,19 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .lb-n:active{background:rgba(255,255,255,.3)}.lb-n .chev{width:20px;height:20px}
 .lb-prev{inset-inline-start:12px}.lb-next{inset-inline-end:12px}
 .lb-c{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);color:#fff;font-size:13px;background:rgba(255,255,255,.14);padding:4px 12px;border-radius:999px;direction:ltr;unicode-bidi:isolate}
+.dpop.dp-done .dps.done i{animation:pn-pop .45s cubic-bezier(.2,.9,.3,1.4)}
+.dpop.dp-done .dp-steps{color:var(--gold-ink)}
+@keyframes pn-pop{0%{transform:scale(.6)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+.dpop.dp-done{animation:pn-dp-out .65s ease forwards}
+@keyframes pn-dp-out{0%,55%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+.grid.reveal .card{animation:pn-rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,12) * 45ms)}
+@keyframes pn-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.filters-note.flash{animation:pn-flash 1.4s ease}
+@keyframes pn-flash{0%{background:color-mix(in srgb,var(--gold) 22%,transparent)}100%{background:transparent}}
+.filters-note{border-radius:10px;padding-block:4px}
+.pn-toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:70;background:#C7B072;color:#181C21;font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .3s,transform .3s;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.pn-toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.grid.reveal .card,.dpop.dp-done,.filters-note.flash{animation:none}}
 </style>
 </head><body>
 <div data-src="" id="app"></div>
@@ -444,6 +457,14 @@ function typeName(a){var r=+a.rooms;if(!r)return "";var f=TYPES.filter(function(
 function phHTML(){return '<div class="ph">'+ICON.door+'</div>'}
 
 /* ---------- public page ---------- */
+function revealResults(){var note=document.querySelector(".filters-note"),g=document.querySelector(".grid");if(!g)return;
+  var top=(note||g).getBoundingClientRect().top+window.scrollY-84;window.scrollTo({top:Math.max(0,top),behavior:"smooth"});
+  g.classList.remove("reveal");void g.offsetWidth;[].slice.call(g.querySelectorAll(".card")).slice(0,12).forEach(function(c,i){c.style.setProperty("--i",i)});g.classList.add("reveal");
+  if(note){note.classList.remove("flash");void note.offsetWidth;note.classList.add("flash")}
+  var free=g.querySelectorAll(".card:not(.is-booked)").length,all=g.querySelectorAll(".card").length;
+  var msg=(typeof LANG!=="undefined"&&LANG==="en")?"✓ Showing apartments for "+sDate(S.ci)+" – "+sDate(S.co):"✓ تم عرض الشقق المتاحة من "+sDate(S.ci)+" إلى "+sDate(S.co);
+  var tt=document.createElement("div");tt.className="pn-toast";tt.setAttribute("role","status");tt.textContent=msg;document.body.appendChild(tt);
+  requestAnimationFrame(function(){tt.classList.add("on")});setTimeout(function(){tt.classList.remove("on");setTimeout(function(){tt.remove()},350)},2600)}
 function render(){
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
   var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
@@ -750,7 +771,7 @@ document.addEventListener("click",function(e){
   if(d.pdel!==undefined){draft.apts[S.edit].photos.splice(+d.pdel,1);mark();renderAdmin();return}
   if(d.penh!==undefined){enhanceExisting(+d.penh);return}
   if(d.pfirst!==undefined){var ps=draft.apts[S.edit].photos,q=ps.splice(+d.pfirst,1)[0];ps.unshift(q);mark();renderAdmin();return}
-  if(d.sday){var ds=d.sday;if(S.dp==="ci"||!S.ci||ds<=S.ci||(S.ci&&S.co&&S.dp!=="co")){S.ci=ds;if(S.co&&S.co<=ds)S.co=null;S.dp="co"}else{S.co=ds;S.dp=null}render();return}
+  if(d.sday){var ds=d.sday;if(S.dp==="ci"||!S.ci||ds<=S.ci||(S.ci&&S.co&&S.dp!=="co")){S.ci=ds;if(S.co&&S.co<=ds)S.co=null;S.dp="co"}else{S.co=ds;render();var _p=document.querySelector(".dpop");if(_p)_p.classList.add("dp-done");clearTimeout(S._pk);S._pk=setTimeout(function(){S.dp=null;render();revealResults()},650);return}render();return}
   if(d.day){if(S.edit!==null&&draft){var a=draft.apts[S.edit];a.booked=a.booked||[];var k=a.booked.indexOf(d.day);if(k>=0)a.booked.splice(k,1);else a.booked.push(d.day);a.booked.sort();mark();document.getElementById("ed-cal").innerHTML=calHTML(a,S.calBase,"toggle")}else pickDay(d.day);return}
   switch(d.act){
     case "home":e.preventDefault();try{history.scrollRestoration="manual"}catch(x){}if(S.open){closeApt();setTimeout(function(){window.scrollTo({top:0,behavior:"smooth"})},80)}else window.scrollTo({top:0,behavior:"smooth"});break;
