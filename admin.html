@@ -280,8 +280,9 @@ footer .wrap{padding-bottom:96px}
   .filters-note{font-size:13px}
   .grid{padding-top:0}
 }
+.g-nav{transition:transform .12s ease,background .15s}.g-nav:active{transform:translateY(-50%) scale(.9);background:#fff}
 .icon-btn{transition:transform .12s ease,background .15s,border-color .15s}
-[data-act$=prev]:active,[data-act$=next]:active,.icon-btn:active{transform:scale(.86);background:color-mix(in srgb,var(--gold) 22%,transparent)!important;border-color:var(--gold)!important}
+[data-act$=prev]:not(.g-nav):active,[data-act$=next]:not(.g-nav):active,.icon-btn:active{transform:scale(.86);background:color-mix(in srgb,var(--gold) 22%,transparent)!important;border-color:var(--gold)!important}
 [data-act$=prev].tapped,[data-act$=next].tapped{animation:pn-tap .38s ease}
 @keyframes pn-tap{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 50%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
 .cals.sl-next{animation:pn-sl-next .32s cubic-bezier(.2,.7,.2,1)}.cals.sl-prev{animation:pn-sl-prev .32s cubic-bezier(.2,.7,.2,1)}
