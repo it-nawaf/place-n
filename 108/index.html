@@ -570,8 +570,8 @@ function render(){
 }
 
 /* ---------- detail ---------- */
-function openApt(id){if(window._pnResetSheet)_pnResetSheet();var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(location.pathname!==sl||location.hash)history.replaceState(null,"",sl)}catch(e){}document.body.style.overflow="hidden"}
-function closeApt(){S.open=null;layer.innerHTML="";document.body.classList.remove("sheet-open");document.body.style.overflow="";try{history.replaceState(null,"","/")}catch(e){}render()}
+function openApt(id){if(window._pnResetSheet)_pnResetSheet();var a=apts().find(function(x){return x.id===id});if(!a)return;S.open=id;S.share=false;S.gi=0;S.calBase=null;renderDetail();try{var sl="/"+slug(a);if(!window._pnPop){if(location.pathname.replace(/\/$/,"")===sl&&!(history.state&&history.state.apt)){history.replaceState({home:1},"","/");history.pushState({apt:id},"",sl)}else if(location.pathname!==sl||location.hash){history.pushState({apt:id},"",sl)}}}catch(e){}document.body.style.overflow="hidden"}
+function closeApt(){S.open=null;layer.innerHTML="";document.body.classList.remove("sheet-open");document.body.style.overflow="";try{if(!window._pnPop){if(history.state&&history.state.apt)history.back();else history.replaceState(null,"","/")}}catch(e){}render()}
 function sDate(ds){var d=parse(ds),m=MONTHS[d.getMonth()];return d.getDate()+" "+(typeof LANG!=="undefined"&&LANG==="en"?m.slice(0,3):m)}
 function dpSteps(){var two=!(!S.ci||S.co&&S.dp==="ci");
   function st(n,cls,lab,val){return '<span class="dps'+cls+'"><i class="num">'+n+'</i><span><small>'+lab+'</small><b class="num">'+val+'</b></span></span>'}
@@ -838,6 +838,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(S.dp&&!d
 window.addEventListener("hashchange",function(){var id=findKey(location.hash.slice(1));if(id)openApt(id)});
 
 function liveDone(){if(S.live)return;S.live=true;if(S.open)renderDetail();else if(!S.dp)render()}
+addEventListener("popstate",function(){window._pnPop=true;try{var id=findKey(location.pathname)||findKey(location.hash.slice(1));if(id&&id!==S.open)openApt(id);else if(!id&&S.open)closeApt()}catch(e){}window._pnPop=false});
 function liveSync(){setTimeout(liveDone,6000);fetch("https://placen-cal.blue-hill-91f0.workers.dev/",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.apts){liveDone();return}var ch=false;DATA.apts.forEach(function(a){var l=j.apts[a.id];if(l&&JSON.stringify(l)!==JSON.stringify(a.sync||[])){a.sync=l;ch=true}});if(!ch&&S.live)return;S.live=true;if(S.open)renderDetail();else if(!S.dp)render()}).catch(liveDone)}
 fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){DATA=d;render();liveSync();
   var id0=findKey(location.hash.slice(1))||findKey(location.pathname);if(id0)openApt(id0)}).catch(function(){app.innerHTML='<div class="wrap" style="padding:60px 0;text-align:center">تعذّر تحميل الشقق. حدّث الصفحة.</div>'});
