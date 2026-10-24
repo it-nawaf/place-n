@@ -469,6 +469,7 @@ function revealResults(){var note=document.querySelector(".filters-note"),g=docu
   var msg=(typeof LANG!=="undefined"&&LANG==="en")?"✓ Showing apartments for "+sDate(S.ci)+" – "+sDate(S.co):"✓ تم عرض الشقق المتاحة من "+sDate(S.ci)+" إلى "+sDate(S.co);
   var tt=document.createElement("div");tt.className="pn-toast";tt.setAttribute("role","status");tt.textContent=msg;document.body.appendChild(tt);
   requestAnimationFrame(function(){tt.classList.add("on")});setTimeout(function(){tt.classList.remove("on");setTimeout(function(){tt.remove()},350)},2600)}
+var BED2='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 19v-7h18v7M3 16h18"/><path d="M5 12V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v5"/><path d="M8 12v-2h3v2M13 12v-2h3v2"/></svg>';
 function render(){
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
   var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
@@ -491,7 +492,7 @@ function render(){
     var p=(a.photos||[])[0],n=(a.photos||[]).length;
     var bk=S.ci&&S.co&&!isFree(a,S.ci,S.co);h+='<button class="card'+(bk?' is-booked':'')+'" data-open="'+esc(a.id)+'"><div class="arch">'+(p?'<img src="'+esc(thumb(p))+'"'+imgFallback(p)+' alt="'+esc(a.name)+'" loading="lazy" decoding="async">':phHTML())+(n>1?'<span class="badge num">'+n+' صور</span>':'')+(S.ci&&S.co?(bk?'<span class="state no">محجوزة'+(S.ci===today()&&S.co===addDays(today(),1)?' الليلة':' في تواريخك')+'</span>':'<span class="state">متاحة</span>'):'')+'</div>';
     h+='<div>'+(typeName(a)?'<div class="type-tag">'+typeName(a)+'</div>':'')+'<h3>'+esc(a.name)+(a.sample?'<span class="sample">مثال</span>':'')+'</h3><div class="meta">'+esc([a.district,a.city].filter(Boolean).join("، "))+'</div>'+rateHTML(a)+'</div>';
-    h+='<div class="meta num">'+(a.halls?'<span>'+ICON.sofa+' '+fmt(a.halls)+(+a.halls===1?' صالة':' صالات')+'</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+(+a.rooms===1?' غرفة':' غرف')+'</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+(+a.baths===1?' دورة مياه':' دورات مياه')+'</span>':'')+'</div>';
+    h+='<div class="meta num">'+(a.halls?'<span>'+ICON.sofa+' '+fmt(a.halls)+(+a.halls===1?' صالة':' صالات')+'</span>':'')+(a.rooms?'<span>'+ICON.bed+' '+fmt(a.rooms)+(+a.rooms===1?' غرفة':' غرف')+'</span>':'')+(a.beds?'<span>'+BED2+' '+fmt(a.beds)+(+a.beds===1?' سرير':' أسرّة')+'</span>':'')+(a.baths?'<span>'+ICON.bath+' '+fmt(a.baths)+(+a.baths===1?' دورة مياه':' دورات مياه')+'</span>':'')+'</div>';
     h+='<div class="price"><span>السعر والحجز عبر جاذر إن</span></div></button>';
   });
   h+='</section></main>';
