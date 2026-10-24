@@ -1,0 +1,10 @@
+شقة 107 ical plain 1 events
+    20261023 20261024 Reserved | stamp 20261024T144658Z | uid reservation-1386048423584@gath
+شقة 107 ical fresh 1 events
+    20261023 20261024 Reserved | stamp 20261024T144658Z | uid reservation-1386048423584@gath
+شقة 306 ical plain 2 events
+    20261023 20261024 Reserved | stamp 20261024T144659Z | uid reservation-1386761624123@gath
+    20261026 20261027 Unavailable | stamp 20261024T144659Z | uid unavailable-1585209747251@gath
+شقة 306 ical fresh 2 events
+    20261023 20261024 Reserved | stamp 20261024T144659Z | uid reservation-1386761624123@gath
+    20261026 20261027 Unavailable | stamp 20261024T144659Z | uid unavailable-1585209747251@gath
