@@ -1,0 +1,26 @@
+name: diag
+on: [push]
+permissions:
+  contents: write
+jobs:
+  d:
+    if: contains(github.event.head_commit.message, '[diag]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p diag
+          python3 - <<'P'
+          import json,urllib.request
+          d=json.load(open('data.json'))
+          a=[x for x in d['apts'] if x['name']=='شقة 005'][0]
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':UA,'Accept-Language':'ar'}),timeout=30).read()
+          open('diag/view.html','wb').write(get('https://gathern.co/view/%s'%a['unit']))
+          for i,u in enumerate(['https://gathern.co/view/%s/reviews'%a['unit'],'https://gathern.co/api/v1/units/%s/reviews'%a['unit']]):
+              try: open('diag/r%d.txt'%i,'wb').write(get(u)[:300000])
+              except Exception as e: open('diag/r%d.txt'%i,'w').write('ERR '+str(e))
+          P
+          git config user.name "place-n bot"; git config user.email "bot@users.noreply.github.com"
+          git add diag; git commit -m "diag output"; git pull --rebase; git push
