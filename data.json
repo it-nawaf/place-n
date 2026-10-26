@@ -1346,8 +1346,10 @@
    "reviews": 59,
    "unit": "205660",
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "26 أكتوبر، 12:13 ص",
+   "sync": [
+    "2026-10-26"
+   ],
+   "syncAt": "26 أكتوبر، 10:03 م",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
