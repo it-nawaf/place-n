@@ -2034,8 +2034,10 @@
    "reviews": 49,
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "26 أكتوبر، 12:13 ص",
+   "sync": [
+    "2026-10-27"
+   ],
+   "syncAt": "27 أكتوبر، 4:54 ص",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
