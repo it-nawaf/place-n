@@ -1577,8 +1577,10 @@
    "ical": "https://gathern.co/ical/716258mEjOWApW.ics",
    "booked": [],
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "27 أكتوبر، 12:17 ص",
+   "sync": [
+    "2026-10-26"
+   ],
+   "syncAt": "27 أكتوبر، 4:10 ص",
    "rating": "10",
    "reviews": 101,
    "unit": "198203",
