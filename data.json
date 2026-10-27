@@ -1432,9 +1432,16 @@
     "2026-10-26",
     "2026-10-27",
     "2026-10-28",
-    "2026-10-29"
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04",
+    "2026-11-05"
    ],
-   "syncAt": "27 أكتوبر، 12:17 ص",
+   "syncAt": "27 أكتوبر، 11:03 م",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -1726,9 +1733,16 @@
     "2026-10-26",
     "2026-10-27",
     "2026-10-28",
-    "2026-10-29"
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04",
+    "2026-11-05"
    ],
-   "syncAt": "27 أكتوبر، 12:17 ص",
+   "syncAt": "27 أكتوبر، 11:03 م",
    "unit": "205837",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
@@ -2081,9 +2095,11 @@
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-10-27"
+    "2026-10-27",
+    "2026-10-29",
+    "2026-10-30"
    ],
-   "syncAt": "27 أكتوبر، 4:54 ص",
+   "syncAt": "27 أكتوبر، 11:03 م",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
