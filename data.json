@@ -1981,7 +1981,92 @@
    "baths": 1,
    "desc": "مساحات مصممة لتكون بيتك الثاني أنعم بالهدوء والاسترخاء بها برفقة عائلتك أو الأصدقاء. شقة بتصميم عصري مريح بدخول ذاتي تتكون من غرفة نوم وركن تحضيري ومنطقة مخصصة للقهوة وصالة ودورة مياه. بيئة منزلية دافئة، توفر لك الراحة والخصوصية والعديد من المميزات التي تلبي جميع احتياجاتك.",
    "amen": [],
-   "photos": [],
+   "photos": [
+    {
+     "f": "img/3ujihlmvsdhgue.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/p8oxs8mvsdhj33.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/8ttzp6mvsdhmu2.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/wkkv7hmvsdhp9r.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/ccb27lmvsdhrou.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/8fut8zmvsdhull.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/lrhrf0mvsdhwv3.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/v6f2mcmvsdhyvw.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/fp8jtsmvsdi0vm.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/u5hkz6mvsdi30z.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/e8noopmvsdi56h.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/uyllk3mvsdi71d.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/4d6q83mvsdi905.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/xt8aydmvsdibfx.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/0wb2xcmvsdidps.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/t3g1famvsdifvs.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/8bswhlmvsdii5h.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/7nmi3mmvsdikd7.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/9px9bcmvsdimh8.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/yvh90umvsdiofh.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/jknb7imvsdiqj3.jpg",
+     "e": 1
+    }
+   ],
    "map": "https://maps.app.goo.gl/QZ7UpzeE9Je7Emn27?g_st=com.google.maps.preview.copy",
    "gathern": "https://gathern.co/r/h6N18V",
    "ical": "https://gathern.co/ical/110551bqVQ5U0q.ics",
