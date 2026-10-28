@@ -16,16 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install --quiet pillow
-      - name: Shrink new photos
-        run: python3 scripts/optimize_img.py
-      - name: Make apartment pages
-        run: python3 scripts/gen_pages.py
-      - name: Commit changes
+      - name: Build and publish (retries if other uploads land meanwhile)
         run: |
           git config user.name "place-n bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
-          git commit -m "صفحات مشاركة الشقق"
-          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
-          exit 1
+          for i in 1 2 3 4 5 6; do
+            python3 scripts/optimize_img.py
+            python3 scripts/gen_pages.py
+            rm -rf scripts/__pycache__
+            git add -A
+            if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+            git commit -q -m "صفحات مشاركة الشقق"
+            if git push -q; then exit 0; fi
+            echo "push rejected, rebuilding on the latest version ($i)"
+            sleep $((i*4))
+            git fetch -q origin main && git reset -q --hard origin/main
+          done
+          echo "gave up for now; the next upload will rebuild"; exit 0
