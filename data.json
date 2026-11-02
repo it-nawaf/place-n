@@ -2495,9 +2495,10 @@
    "ical": "https://gathern.co/ical/519876lXzVIkNw.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-01"
+    "2026-11-01",
+    "2026-11-02"
    ],
-   "syncAt": "2 نوفمبر، 12:24 ص",
+   "syncAt": "2 نوفمبر، 9:26 م",
    "rating": "10",
    "reviews": 83,
    "unit": "194499",
@@ -2848,6 +2849,8 @@
    "unit": "185186",
    "sync": [
     "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
     "2027-06-27",
     "2027-06-28",
     "2027-06-29",
@@ -2978,7 +2981,7 @@
     "2027-11-01",
     "2027-11-02"
    ],
-   "syncAt": "2 نوفمبر، 3:49 ص",
+   "syncAt": "2 نوفمبر، 9:26 م",
    "ical2": "https://www.airbnb.com/calendar/ical/1489761248779876072.ics?t=9ac8cd30fd294ed4bdfdcbd32f9f4152&locale=ar",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
