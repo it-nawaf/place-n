@@ -1865,9 +1865,10 @@
    "reviews": 96,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-03"
+    "2026-11-03",
+    "2026-11-04"
    ],
-   "syncAt": "4 نوفمبر، 12:21 ص",
+   "syncAt": "4 نوفمبر، 6:28 م",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -1898,9 +1899,10 @@
    "unit": "163817",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-03"
+    "2026-11-03",
+    "2026-11-04"
    ],
-   "syncAt": "3 نوفمبر، 5:50 م",
+   "syncAt": "4 نوفمبر، 6:28 م",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2456,9 +2458,10 @@
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-11-03",
-    "2026-11-04"
+    "2026-11-04",
+    "2026-11-05"
    ],
-   "syncAt": "4 نوفمبر، 5:37 م",
+   "syncAt": "4 نوفمبر، 6:28 م",
    "rating": "10",
    "reviews": 101,
    "unit": "198203",
