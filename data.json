@@ -1931,9 +1931,10 @@
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-11-03",
+    "2026-11-04",
     "2026-11-05"
    ],
-   "syncAt": "4 نوفمبر، 12:21 ص",
+   "syncAt": "4 نوفمبر، 9:38 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -3035,9 +3036,11 @@
    "booked": [],
    "sync": [
     "2026-11-03",
-    "2026-11-04"
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06"
    ],
-   "syncAt": "4 نوفمبر، 12:21 ص",
+   "syncAt": "4 نوفمبر، 9:38 ص",
    "rating": "9.9",
    "reviews": 104,
    "halls": 1,
