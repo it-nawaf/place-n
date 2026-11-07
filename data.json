@@ -1597,8 +1597,6 @@
    "unit": "271713",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-05",
-    "2026-11-06",
     "2026-11-07",
     "2026-11-11",
     "2026-11-20",
@@ -1608,7 +1606,7 @@
     "2026-11-24",
     "2026-11-25"
    ],
-   "syncAt": "7 نوفمبر، 10:13 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: a living room and three fully equipped bedrooms, plus a coffee bar, a full kitchen and two bathrooms.\nLocated in Al Rayyan. A warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -1846,7 +1844,6 @@
    "unit": "146574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-07",
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
@@ -1961,7 +1958,7 @@
     "2027-02-27",
     "2027-02-28"
    ],
-   "syncAt": "7 نوفمبر، 12:31 ص",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -1991,7 +1988,6 @@
    "unit": "152385",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-07",
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
@@ -2012,7 +2008,7 @@
     "2026-11-25",
     "2026-11-26"
    ],
-   "syncAt": "7 نوفمبر، 12:31 ص",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -2041,10 +2037,9 @@
    "reviews": 98,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07"
    ],
-   "syncAt": "7 نوفمبر، 1:34 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -2303,10 +2298,9 @@
    "unit": "163817",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07"
    ],
-   "syncAt": "7 نوفمبر، 5:11 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2452,10 +2446,9 @@
    "unit": "153574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07"
    ],
-   "syncAt": "7 نوفمبر، 10:13 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2605,10 +2598,9 @@
    "unit": "161935",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07"
    ],
-   "syncAt": "7 نوفمبر، 6:25 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2740,10 +2732,8 @@
    "rating": "10",
    "reviews": 106,
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [
-    "2026-11-07"
-   ],
-   "syncAt": "7 نوفمبر، 7:40 م",
+   "sync": [],
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "unit": "180469",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
@@ -2853,10 +2843,8 @@
    "reviews": 61,
    "unit": "205660",
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [
-    "2026-11-06"
-   ],
-   "syncAt": "7 نوفمبر، 12:31 ص",
+   "sync": [],
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -2962,14 +2950,13 @@
    "unit": "206399",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07",
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "7 نوفمبر، 7:01 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -3446,10 +3433,9 @@
    "ical": "https://gathern.co/ical/519876lXzVIkNw.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07"
    ],
-   "syncAt": "7 نوفمبر، 8:18 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "rating": "10",
    "reviews": 83,
    "unit": "194499",
@@ -3562,14 +3548,13 @@
    "reviews": 60,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-06",
     "2026-11-07",
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "7 نوفمبر، 10:38 ص",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "unit": "205837",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
@@ -4358,13 +4343,10 @@
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-04",
-    "2026-11-05",
-    "2026-11-06",
     "2026-11-07",
     "2026-11-08"
    ],
-   "syncAt": "7 نوفمبر، 9:25 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
@@ -4641,15 +4623,13 @@
    "ical": "https://gathern.co/ical/687212o5lD7tAj.ics",
    "booked": [],
    "sync": [
-    "2026-11-05",
-    "2026-11-06",
     "2026-11-07",
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "7 نوفمبر، 7:40 م",
+   "syncAt": "8 نوفمبر، 12:01 ص",
    "rating": "9.9",
    "reviews": 107,
    "halls": 1,
