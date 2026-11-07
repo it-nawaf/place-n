@@ -1611,57 +1611,6 @@
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: a living room and three fully equipped bedrooms, plus a coffee bar, a full kitchen and two bathrooms.\nLocated in Al Rayyan. A warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
-   "id": "am7qt9p",
-   "name": "شقة 004",
-   "district": "حي الريان",
-   "city": "بريدة",
-   "guests": 6,
-   "rooms": 2,
-   "halls": 1,
-   "beds": 2,
-   "baths": 2,
-   "desc": "شقة فاخرة بدخول ذاتي تتكون من غرفتين نوم ومطبخ ومنطقة مخصصة للقهوة وصالة ودورتين مياه",
-   "amen": [],
-   "photos": [
-    {
-     "a": "3d3ef1da196ed3a9d672efec1e7e0b93",
-     "e": 1
-    }
-   ],
-   "map": "https://maps.app.goo.gl/Bzk7PEptGQ2DYkpn7?g_st=com.google.maps.preview.copy",
-   "gathern": "https://gathern.co/r/thhnj8",
-   "ical": "https://gathern.co/ical/473767nWy7TMJh.ics",
-   "booked": [],
-   "rating": "9.8",
-   "reviews": 61,
-   "unit": "152385",
-   "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [
-    "2026-11-07",
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14",
-    "2026-11-15",
-    "2026-11-16",
-    "2026-11-17",
-    "2026-11-18",
-    "2026-11-19",
-    "2026-11-20",
-    "2026-11-21",
-    "2026-11-22",
-    "2026-11-23",
-    "2026-11-24",
-    "2026-11-25",
-    "2026-11-26"
-   ],
-   "syncAt": "7 نوفمبر، 12:31 ص",
-   "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
-  },
-  {
    "id": "aayxb59",
    "name": "شقة 106",
    "district": "حي الريان",
@@ -2015,140 +1964,55 @@
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
-   "id": "akr0whp",
-   "name": "شقة 005",
-   "district": "حي قرطبة",
+   "id": "am7qt9p",
+   "name": "شقة 004",
+   "district": "حي الريان",
    "city": "بريدة",
-   "guests": 4,
-   "rooms": 1,
+   "guests": 6,
+   "rooms": 2,
    "halls": 1,
-   "beds": 1,
-   "baths": 1,
-   "desc": "مساحات مصممة لتكون بيتك الثاني أنعم بالهدوء والاسترخاء بها برفقة عائلتك أو الأصدقاء شقة بتصميم عصري مريح بدخول ذاتي تتكون من غرفة نوم وركن تحضيري ومنطقة مخصصة للقهوة وصالة ودورة مياه بيئة منزلية دافئة، توفر لك الراحة والخصوصية والعديد من المميزات التي تلبي جميع احتياجاتك",
+   "beds": 2,
+   "baths": 2,
+   "desc": "شقة فاخرة بدخول ذاتي تتكون من غرفتين نوم ومطبخ ومنطقة مخصصة للقهوة وصالة ودورتين مياه",
    "amen": [],
    "photos": [
     {
-     "f": "img/tc2qsomw6ro4da.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/cvjo93mw6ro6ka.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/1evrk0mw6ro8lb.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/b0l96ymw6rob2f.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/h9j1u0mw6rodbs.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/lk87ppmw6roffg.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/i7zw9tmw6rohhn.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/hni0a1mw6rojlj.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/1t4fxjmw6rolt6.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/t47k2amw6ronse.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/6x749jmw6roq0e.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/obgdobmw6rorwr.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/isv829mw6rotyd.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/w67hb4mw6rovxr.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/trrqpqmw6roy1l.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/v8r8ykmw6rp008.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/npy1limw6rp23t.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/9b7jlhmw6rp41x.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/elvphfmw6rp66v.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/36jcjemw6rp85b.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/ot471mmw6rpa95.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/0x52j0mw6rpcv3.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/l8dyfbmw6rpexu.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/721g3ymw6rpgu1.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/3doeb3mw6rpirm.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/7wmkgymw6rpkjt.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/d7wm2lmw6rpmcg.jpg",
+     "a": "3d3ef1da196ed3a9d672efec1e7e0b93",
      "e": 1
     }
    ],
-   "map": "https://maps.app.goo.gl/Bcxd4uriBDcHdUcC6?g_st=com.google.maps.preview.copy",
-   "gathern": "https://gathern.co/r/BQgG2B",
-   "ical": "https://gathern.co/ical/0932723KGLN6gG.ics",
+   "map": "https://maps.app.goo.gl/Bzk7PEptGQ2DYkpn7?g_st=com.google.maps.preview.copy",
+   "gathern": "https://gathern.co/r/thhnj8",
+   "ical": "https://gathern.co/ical/473767nWy7TMJh.ics",
    "booked": [],
-   "rating": "10",
-   "reviews": 106,
+   "rating": "9.8",
+   "reviews": 61,
+   "unit": "152385",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-07"
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22",
+    "2026-11-23",
+    "2026-11-24",
+    "2026-11-25",
+    "2026-11-26"
    ],
-   "syncAt": "7 نوفمبر، 7:40 م",
-   "unit": "180469",
-   "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
+   "syncAt": "7 نوفمبر، 12:31 ص",
+   "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
    "id": "ad5atw2",
@@ -2745,6 +2609,142 @@
    ],
    "syncAt": "7 نوفمبر، 6:25 م",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
+  },
+  {
+   "id": "akr0whp",
+   "name": "شقة 005",
+   "district": "حي قرطبة",
+   "city": "بريدة",
+   "guests": 4,
+   "rooms": 1,
+   "halls": 1,
+   "beds": 1,
+   "baths": 1,
+   "desc": "مساحات مصممة لتكون بيتك الثاني أنعم بالهدوء والاسترخاء بها برفقة عائلتك أو الأصدقاء شقة بتصميم عصري مريح بدخول ذاتي تتكون من غرفة نوم وركن تحضيري ومنطقة مخصصة للقهوة وصالة ودورة مياه بيئة منزلية دافئة، توفر لك الراحة والخصوصية والعديد من المميزات التي تلبي جميع احتياجاتك",
+   "amen": [],
+   "photos": [
+    {
+     "f": "img/tc2qsomw6ro4da.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/cvjo93mw6ro6ka.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/1evrk0mw6ro8lb.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/b0l96ymw6rob2f.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/h9j1u0mw6rodbs.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/lk87ppmw6roffg.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/i7zw9tmw6rohhn.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/hni0a1mw6rojlj.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/1t4fxjmw6rolt6.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/t47k2amw6ronse.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/6x749jmw6roq0e.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/obgdobmw6rorwr.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/isv829mw6rotyd.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/w67hb4mw6rovxr.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/trrqpqmw6roy1l.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/v8r8ykmw6rp008.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/npy1limw6rp23t.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/9b7jlhmw6rp41x.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/elvphfmw6rp66v.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/36jcjemw6rp85b.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/ot471mmw6rpa95.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/0x52j0mw6rpcv3.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/l8dyfbmw6rpexu.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/721g3ymw6rpgu1.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/3doeb3mw6rpirm.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/7wmkgymw6rpkjt.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/d7wm2lmw6rpmcg.jpg",
+     "e": 1
+    }
+   ],
+   "map": "https://maps.app.goo.gl/Bcxd4uriBDcHdUcC6?g_st=com.google.maps.preview.copy",
+   "gathern": "https://gathern.co/r/BQgG2B",
+   "ical": "https://gathern.co/ical/0932723KGLN6gG.ics",
+   "booked": [],
+   "rating": "10",
+   "reviews": 106,
+   "checkAt": "21 أكتوبر، 9:14 م",
+   "sync": [
+    "2026-11-07"
+   ],
+   "syncAt": "7 نوفمبر، 7:40 م",
+   "unit": "180469",
+   "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
    "id": "a43b0z7",
