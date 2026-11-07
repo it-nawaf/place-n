@@ -3457,123 +3457,6 @@
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
-   "id": "aj5tlc9",
-   "name": "شقة 203",
-   "district": "حي السلطانة",
-   "city": "بريدة",
-   "guests": 4,
-   "rooms": 1,
-   "beds": 1,
-   "baths": 1,
-   "area": "",
-   "desc": "مساحات مصممة لتكون بيتك الثاني أنعم بالهدوء والاسترخاء بها برفقة عائلتك أو الأصدقاء.\nشقة بتصميم عصري مريح بدخول ذاتي تتكون من غرفة نوم وركن تحضيري ومنطقة مخصصة للقهوة وصالة ودورة مياه.\nبيئة منزلية دافئة، توفر لك الراحة والخصوصية والعديد من المميزات التي تلبي جميع احتياجاتك.",
-   "amen": [],
-   "photos": [
-    {
-     "f": "img/69qko5mw6qe9sr.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/titx2rmw6qec7f.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/4krcmnmw6qeeez.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/rphm3mmw6qegbl.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/no8dydmw6qeid0.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/82ud5umw6qek9b.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/o420y7mw6qem8b.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/knmgrkmw6qenw0.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/c3wosemw6qeq0x.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/mdhjk6mw6qerzt.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/88h3xbmw6qeu9m.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/dx9rlmmw6qewqq.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/w5bc24mw6qeypr.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/w3fpxrmw6qf0ge.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/vs84egmw6qf2l3.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/0jy02nmw6qf4ej.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/ui9023mw6qf6je.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/gjceplmw6qf89z.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/zbxrokmw6qfa3g.jpg",
-     "e": 1
-    },
-    {
-     "f": "img/162725mw6qfbwq.jpg",
-     "e": 1
-    }
-   ],
-   "map": "https://maps.app.goo.gl/QZ7UpzeE9Je7Emn27?g_st=com.google.maps.preview.copy",
-   "gathern": "https://gathern.co/r/eb7Mdf",
-   "booked": [],
-   "ical": "https://gathern.co/ical/561373RaX3IZUK.ics",
-   "rating": "10",
-   "reviews": 56,
-   "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [
-    "2026-11-06",
-    "2026-11-07",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14",
-    "2026-11-24"
-   ],
-   "syncAt": "7 نوفمبر، 8:02 ص",
-   "unit": "216360",
-   "halls": 1,
-   "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
-  },
-  {
    "id": "aeaz3do",
    "name": "شقة 208",
    "district": "حي السلطانة",
@@ -4772,6 +4655,123 @@
    "halls": 1,
    "checkAt": "21 أكتوبر، 9:14 م",
    "unit": "183969",
+   "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
+  },
+  {
+   "id": "aj5tlc9",
+   "name": "شقة 203",
+   "district": "حي السلطانة",
+   "city": "بريدة",
+   "guests": 4,
+   "rooms": 1,
+   "beds": 1,
+   "baths": 1,
+   "area": "",
+   "desc": "مساحات مصممة لتكون بيتك الثاني أنعم بالهدوء والاسترخاء بها برفقة عائلتك أو الأصدقاء.\nشقة بتصميم عصري مريح بدخول ذاتي تتكون من غرفة نوم وركن تحضيري ومنطقة مخصصة للقهوة وصالة ودورة مياه.\nبيئة منزلية دافئة، توفر لك الراحة والخصوصية والعديد من المميزات التي تلبي جميع احتياجاتك.",
+   "amen": [],
+   "photos": [
+    {
+     "f": "img/69qko5mw6qe9sr.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/titx2rmw6qec7f.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/4krcmnmw6qeeez.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/rphm3mmw6qegbl.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/no8dydmw6qeid0.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/82ud5umw6qek9b.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/o420y7mw6qem8b.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/knmgrkmw6qenw0.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/c3wosemw6qeq0x.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/mdhjk6mw6qerzt.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/88h3xbmw6qeu9m.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/dx9rlmmw6qewqq.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/w5bc24mw6qeypr.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/w3fpxrmw6qf0ge.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/vs84egmw6qf2l3.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/0jy02nmw6qf4ej.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/ui9023mw6qf6je.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/gjceplmw6qf89z.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/zbxrokmw6qfa3g.jpg",
+     "e": 1
+    },
+    {
+     "f": "img/162725mw6qfbwq.jpg",
+     "e": 1
+    }
+   ],
+   "map": "https://maps.app.goo.gl/QZ7UpzeE9Je7Emn27?g_st=com.google.maps.preview.copy",
+   "gathern": "https://gathern.co/r/eb7Mdf",
+   "booked": [],
+   "ical": "https://gathern.co/ical/561373RaX3IZUK.ics",
+   "rating": "10",
+   "reviews": 56,
+   "checkAt": "21 أكتوبر، 9:14 م",
+   "sync": [
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-24"
+   ],
+   "syncAt": "7 نوفمبر، 8:02 ص",
+   "unit": "216360",
+   "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   }
  ]
