@@ -57,6 +57,35 @@ def meta(title, desc, url, image):
             '<link rel="canonical" href="%s"><!--/og-->') % (e(desc), e(title), e(desc), e(url), e(image), e(url))
 
 
+HAYS = {'sultanah': ('سلطانة', 'حي السلطانة'), 'rayyan': ('ريان', 'حي الريان'), 'qurtubah': ('قرطبة', 'حي قرطبة'), 'rehab': ('رحاب', 'حي الرحاب')}
+
+
+def dnorm(s):
+    s = re.sub(r'^\s*حي\s*', '', s or '').strip()
+    return s[2:] if s.startswith('ال') else s
+
+
+def hay_pages(data, tpl, made):
+    """place-n.com/sultanah etc.: the home page filtered to one district, with its own link preview."""
+    for key, (norm, label) in HAYS.items():
+        apts = [a for a in data['apts'] if a.get('name') and dnorm(a.get('district')) == norm]
+        if not apts:
+            continue
+        img = SITE + 'og-square.jpg?v=5'
+        s = slug(apts[0])
+        if os.path.exists(f'og/{s}.jpg'):
+            img = f'{SITE}og/{s}.jpg?v=3'
+        title = f'شقق {label} | place.n'
+        n = len(apts)
+        desc = f'{n} {"شقق مفروشة" if 3 <= n <= 10 else "شقة مفروشة"} في {label}، بريدة — شاهد التواريخ المتاحة واحجز عبر جاذر إن.'
+        page = re.sub(r'<!--og-->.*?<!--/og-->', lambda m: meta(title, desc, f'{SITE}{key}', img), tpl, count=1, flags=re.S)
+        page = re.sub(r'<title>.*?</title>', f'<title>{html.escape(title)}</title>', page, count=1, flags=re.S)
+        os.makedirs(key, exist_ok=True)
+        with open(f'{key}/index.html', 'w', encoding='utf-8') as f:
+            f.write(page)
+        made.append(key)
+
+
 def main():
     data = load()
     tpl = open('index.html', encoding='utf-8').read()
@@ -84,6 +113,7 @@ def main():
         with open(f'{s}/index.html', 'w', encoding='utf-8') as f:
             f.write(page)
         made.append(s)
+    hay_pages(data, tpl, made)
     # remove pages of apartments that no longer exist
     old = json.load(open(LIST)) if os.path.exists(LIST) else []
     for s in old:

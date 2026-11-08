@@ -383,6 +383,9 @@ html[lang=en] .day.ci::before{content:"In"}html[lang=en] .day.co::before{content
 .pn-toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:70;background:#C7B072;color:#181C21;font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .3s,transform .3s;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
 .pn-toast.on{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.grid.reveal .card,.dpop.dp-done,.filters-note.flash{animation:none}}
+.hay-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;padding:10px 14px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:12px;background:color-mix(in srgb,var(--gold) 8%,transparent);color:var(--gold-ink);font-size:14.5px;font-weight:500}
+.hay-bar svg{width:18px;height:18px;flex:0 0 auto}.hay-bar span{flex:1 1 auto}
+.hay-bar button{all:unset;cursor:pointer;font-size:13px;color:var(--muted);padding:4px 10px;border:1px solid var(--line);border-radius:999px}.hay-bar button:hover{color:var(--ink,inherit)}
 </style>
 </head><body>
 <div data-src="" id="app"></div>
@@ -470,8 +473,14 @@ function revealResults(){var note=document.querySelector(".filters-note"),g=docu
   var tt=document.createElement("div");tt.className="pn-toast";tt.setAttribute("role","status");tt.textContent=msg;document.body.appendChild(tt);
   requestAnimationFrame(function(){tt.classList.add("on")});setTimeout(function(){tt.classList.remove("on");setTimeout(function(){tt.remove()},350)},2600)}
 var BED2='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 19v-7h18v7M3 16h18"/><path d="M5 12V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v5"/><path d="M8 12v-2h3v2M13 12v-2h3v2"/></svg>';
+var HAY={sultanah:"سلطانة",rayyan:"ريان",qurtubah:"قرطبة",rehab:"رحاب"};
+function dnorm(s){return String(s||"").replace(/^\s*حي\s*/,"").replace(/^ال/,"").trim()}
+function hayFromURL(){try{var q=new URLSearchParams(location.search).get("hay");var k=decodeURIComponent((q||location.pathname).replace(/^\/+|\/+$/g,"")).toLowerCase();
+  if(HAY[k])return k;var n=dnorm(k);for(var x in HAY)if(HAY[x]===n)return x}catch(e){}return null}
+function hayName(k){return "حي "+(k==="sultanah"?"السلطانة":k==="rayyan"?"الريان":k==="rehab"?"الرحاب":HAY[k])}
 function render(){
-  var site=(draft||DATA).site,list=apts().filter(function(a){return a.name});
+  if(S.hay===undefined)S.hay=hayFromURL();
+  var site=(draft||DATA).site,list=apts().filter(function(a){return a.name&&(!S.hay||dnorm(a.district)===HAY[S.hay])});
   var filtered=list.filter(function(a){return (!S.guests||+a.guests>=S.guests)&&(!S.type||+a.rooms===S.type)});var freeN=filtered.filter(function(a){return isFree(a,S.ci,S.co)}).length;filtered.sort(function(x,y){return isFree(y,S.ci,S.co)-isFree(x,S.ci,S.co)});
   var hasF=S.ci&&S.co||S.guests||S.type;
   var h='';
@@ -483,6 +492,7 @@ function render(){
     var nN=S.ci&&S.co?nightsBetween(S.ci,S.co).length:0;
     h+='<div class="dpop" role="dialog" aria-label="اختيار التواريخ"><div class="cal-head">'+dpSteps()+'<div style="display:flex;gap:6px"><button type="button" class="icon-btn" data-act="dprev" aria-label="الشهر السابق"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button type="button" class="icon-btn" data-act="dnext" aria-label="الشهر التالي"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div></div><div class="cals">'+calHTML({booked:[]},S.dpBase,"pick","sday")+'</div><div class="dp-foot"><span class="num">'+(nN?fmtDate(S.ci)+' ← '+fmtDate(S.co)+' · '+nightsTxt(nN):"")+'</span><div style="display:flex;gap:8px">'+(S.ci?'<button type="button" class="btn" data-act="dreset">مسح التواريخ</button>':'')+'<button type="button" class="btn pri" data-act="dclose">تم</button></div></div></div>'}
   h+='</div>';
+  if(S.hay)h+='<div class="hay-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>شقق '+hayName(S.hay)+' فقط</span><button type="button" data-hay-clear>عرض كل الشقق ✕</button></div>';
   h+='<div class="types" role="group" aria-label="نوع الشقة">'+[[0,"الكل"]].concat(TYPES).map(function(x){return '<button class="type-chip'+(S.type===x[0]?' on':'')+'" data-type="'+x[0]+'" aria-pressed="'+(S.type===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
   h+='<div class="filters-note"><span class="num">'+((!(S.ci&&S.co)?'<button type="button" class="pick-hint" data-act="dpick" data-which="'+(S.ci?'co':'ci')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>'+(S.ci?'اختر تاريخ المغادرة لعرض الشقق المتاحة':'اختر تاريخ الوصول والمغادرة لعرض الشقق المتاحة')+'</span></button>':'')||(hasF?('المتاح'+(S.ci&&S.co?' من '+fmtDate(S.ci)+' إلى '+fmtDate(S.co):'')+': '+freeN+' من '+list.length+' شقق'):(list.length+' شقق متاحة للحجز اليومي')))+'</span>'+(hasF?'<button class="chip-clear" data-act="clear">مسح البحث</button>':'')+'</div></section>';
   h+='<section class="wrap grid" aria-label="الشقق">';
@@ -573,6 +583,7 @@ addEventListener("popstate",function(){if(LB)lbClose(true)},true);
     if(window.visualViewport&&visualViewport.scale>1.05)return;
     if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.5){var rtl=document.documentElement.dir==="rtl";lbGo((dx<0)!==rtl?1:-1)}else if(dy>90&&Math.abs(dy)>Math.abs(dx)*1.5)lbClose()},{passive:true})})();
 function nightsTxt(n){n=+n;return n===1?"ليلة واحدة":n===2?"ليلتان":n<=10?n+" ليالٍ":n+" ليلة"}
+document.addEventListener("click",function(e){if(!e.target.closest("[data-hay-clear]"))return;S.hay=null;try{if(!S.open)history.replaceState({},"","/")}catch(x){}render()});
 function renderDetail(){setTimeout(preloadNb,60);
   var a=apts().find(function(x){return x.id===S.open});if(!a)return closeApt();
   var ph=a.photos||[],site=(draft||DATA).site;
