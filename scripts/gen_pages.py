@@ -57,7 +57,7 @@ def meta(title, desc, url, image):
             '<link rel="canonical" href="%s"><!--/og-->') % (e(desc), e(title), e(desc), e(url), e(image), e(url))
 
 
-HAYS = {'sultanah': ('سلطانة', 'حي السلطانة'), 'rayyan': ('ريان', 'حي الريان'), 'qurtubah': ('قرطبة', 'حي قرطبة'), 'rehab': ('رحاب', 'حي الرحاب')}
+HAYS = {'sultanah': ('سلطانة', 'حي سلطانة'), 'rayyan': ('ريان', 'حي الريان'), 'qurtubah': ('قرطبة', 'حي قرطبة'), 'rehab': ('رحاب', 'حي الرحاب')}
 
 
 def dnorm(s):

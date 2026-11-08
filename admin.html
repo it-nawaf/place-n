@@ -477,7 +477,7 @@ var HAY={sultanah:"سلطانة",rayyan:"ريان",qurtubah:"قرطبة",rehab:"
 function dnorm(s){return String(s||"").replace(/^\s*حي\s*/,"").replace(/^ال/,"").trim()}
 function hayFromURL(){try{var q=new URLSearchParams(location.search).get("hay");var k=decodeURIComponent((q||location.pathname).replace(/^\/+|\/+$/g,"")).toLowerCase();
   if(HAY[k])return k;var n=dnorm(k);for(var x in HAY)if(HAY[x]===n)return x}catch(e){}return null}
-function hayName(k){return "حي "+(k==="sultanah"?"السلطانة":k==="rayyan"?"الريان":k==="rehab"?"الرحاب":HAY[k])}
+function hayName(k){return "حي "+(k==="sultanah"?"سلطانة":k==="rayyan"?"الريان":k==="rehab"?"الرحاب":HAY[k])}
 function render(){
   if(S.hay===undefined)S.hay=hayFromURL();
   var site=(draft||DATA).site,list=apts().filter(function(a){return a.name&&(!S.hay||dnorm(a.district)===HAY[S.hay])});
