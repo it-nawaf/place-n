@@ -4341,8 +4341,10 @@
    "reviews": 51,
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "9 نوفمبر، 12:24 ص",
+   "sync": [
+    "2026-11-09"
+   ],
+   "syncAt": "9 نوفمبر، 7:30 ص",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
