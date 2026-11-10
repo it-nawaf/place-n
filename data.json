@@ -1597,6 +1597,7 @@
    "unit": "271713",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
+    "2026-11-10",
     "2026-11-11",
     "2026-11-20",
     "2026-11-21",
@@ -1605,7 +1606,7 @@
     "2026-11-24",
     "2026-11-25"
    ],
-   "syncAt": "9 نوفمبر، 12:24 ص",
+   "syncAt": "10 نوفمبر، 11:58 م",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: a living room and three fully equipped bedrooms, plus a coffee bar, a full kitchen and two bathrooms.\nLocated in Al Rayyan. A warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -2031,8 +2032,11 @@
    "rating": "9.9",
    "reviews": 98,
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "9 نوفمبر، 12:24 ص",
+   "sync": [
+    "2026-11-10",
+    "2026-11-11"
+   ],
+   "syncAt": "10 نوفمبر، 11:58 م",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -4110,6 +4114,7 @@
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
+    "2026-11-11",
     "2027-06-27",
     "2027-06-28",
     "2027-06-29",
@@ -4248,7 +4253,7 @@
     "2027-11-09",
     "2027-11-10"
    ],
-   "syncAt": "10 نوفمبر، 3:49 ص",
+   "syncAt": "10 نوفمبر، 11:58 م",
    "ical2": "https://www.airbnb.com/calendar/ical/1489761248779876072.ics?t=9ac8cd30fd294ed4bdfdcbd32f9f4152&locale=ar",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
@@ -4458,9 +4463,10 @@
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-09"
+    "2026-11-09",
+    "2026-11-10"
    ],
-   "syncAt": "9 نوفمبر، 7:30 ص",
+   "syncAt": "10 نوفمبر، 11:58 م",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
