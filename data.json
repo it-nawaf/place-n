@@ -1464,7 +1464,6 @@
    "unit": "262040",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-11",
     "2026-11-12",
     "2026-11-13",
     "2026-11-14",
@@ -1516,7 +1515,7 @@
     "2026-12-30",
     "2026-12-31"
    ],
-   "syncAt": "11 نوفمبر، 12:33 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "ical2": "https://www.airbnb.com/calendar/ical/1726069685160389333.ics?t=d02ee91fbe9e45f7866239208cabac7e&locale=ar",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, elegantly designed apartment with self check-in, combining privacy and comfort with all the amenities you need.\nIt has a spacious living room, a balcony and three fully equipped bedrooms (two with king beds, one with two single beds), three bathrooms, a fully equipped kitchen, a coffee bar and a dining table for four.\nLocated in Al Rayyan, close to services, for a calm stay that suits families and friends."
   },
@@ -1599,7 +1598,6 @@
    "unit": "271713",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11",
     "2026-11-20",
     "2026-11-21",
@@ -1608,7 +1606,7 @@
     "2026-11-24",
     "2026-11-25"
    ],
-   "syncAt": "10 نوفمبر، 11:58 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: a living room and three fully equipped bedrooms, plus a coffee bar, a full kitchen and two bathrooms.\nLocated in Al Rayyan. A warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -1846,7 +1844,6 @@
    "unit": "146574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-11",
     "2026-11-12",
     "2026-11-13",
     "2026-11-14",
@@ -1957,7 +1954,7 @@
     "2027-02-27",
     "2027-02-28"
    ],
-   "syncAt": "11 نوفمبر، 12:33 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -1987,7 +1984,6 @@
    "unit": "152385",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-11",
     "2026-11-12",
     "2026-11-13",
     "2026-11-14",
@@ -2004,7 +2000,7 @@
     "2026-11-25",
     "2026-11-26"
    ],
-   "syncAt": "11 نوفمبر، 12:33 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -2033,10 +2029,9 @@
    "reviews": 98,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "10 نوفمبر، 11:58 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -2295,10 +2290,9 @@
    "unit": "163817",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "11 نوفمبر، 8:19 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2444,11 +2438,11 @@
    "unit": "153574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
+    "2026-11-11",
     "2026-11-12",
     "2026-11-20"
    ],
-   "syncAt": "11 نوفمبر، 8:19 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2598,10 +2592,9 @@
    "unit": "161935",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "11 نوفمبر، 10:53 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2734,11 +2727,10 @@
    "reviews": 106,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11",
     "2026-11-12"
    ],
-   "syncAt": "11 نوفمبر، 3:49 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "unit": "180469",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
@@ -2956,6 +2948,9 @@
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
+    "2026-11-24",
+    "2026-11-25",
+    "2026-11-26",
     "2027-06-27",
     "2027-06-28",
     "2027-06-29",
@@ -3095,7 +3090,7 @@
     "2027-11-10",
     "2027-11-11"
    ],
-   "syncAt": "11 نوفمبر، 3:49 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "ical2": "https://www.airbnb.com/calendar/ical/1559289810174602158.ics?t=adfc930ccbae4e0d9430571b9757e8f3&locale=ar",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
@@ -4141,10 +4136,9 @@
    "ical": "https://gathern.co/ical/803489WWDg6vzL.ics",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11"
    ],
-   "syncAt": "11 نوفمبر، 12:33 م",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "rating": "10",
    "unit": "204745",
    "halls": 1,
@@ -4537,14 +4531,13 @@
    "reviews": 56,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
     "2026-11-14",
     "2026-11-24"
    ],
-   "syncAt": "10 نوفمبر، 12:19 ص",
+   "syncAt": "12 نوفمبر، 12:19 ص",
    "unit": "216360",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
