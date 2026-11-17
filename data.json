@@ -2678,8 +2678,10 @@
    "reviews": 103,
    "unit": "161935",
    "checkAt": "21 أكتوبر، 9:14 م",
-   "sync": [],
-   "syncAt": "17 نوفمبر، 12:08 ص",
+   "sync": [
+    "2026-11-17"
+   ],
+   "syncAt": "17 نوفمبر، 6:42 م",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
