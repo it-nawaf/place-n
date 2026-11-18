@@ -1696,6 +1696,7 @@
    "sync": [
     "2026-11-17",
     "2026-11-18",
+    "2026-11-19",
     "2026-11-20",
     "2026-11-21",
     "2026-11-22",
@@ -1703,7 +1704,7 @@
     "2026-11-24",
     "2026-11-25"
    ],
-   "syncAt": "18 نوفمبر، 11:43 ص",
+   "syncAt": "18 نوفمبر، 2:40 م",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: a living room and three fully equipped bedrooms, plus a coffee bar, a full kitchen and two bathrooms.\nLocated in Al Rayyan. A warm, homely setting that offers comfort, privacy and everything you need."
   },
   {
@@ -2116,9 +2117,13 @@
    "sync": [
     "2026-11-17",
     "2026-11-18",
-    "2026-11-19"
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22",
+    "2026-11-23"
    ],
-   "syncAt": "17 نوفمبر، 9:35 م",
+   "syncAt": "18 نوفمبر، 2:40 م",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -3312,11 +3317,12 @@
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-11-17",
+    "2026-11-18",
     "2026-11-19",
     "2026-11-20",
     "2026-11-27"
    ],
-   "syncAt": "18 نوفمبر، 5:18 ص",
+   "syncAt": "18 نوفمبر، 2:40 م",
    "rating": "10",
    "reviews": 103,
    "unit": "198203",
