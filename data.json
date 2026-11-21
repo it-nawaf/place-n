@@ -2522,9 +2522,10 @@
    "unit": "153574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-20"
+    "2026-11-20",
+    "2026-11-21"
    ],
-   "syncAt": "21 نوفمبر، 12:18 ص",
+   "syncAt": "21 نوفمبر، 1:00 م",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -3581,6 +3582,7 @@
     "2026-11-19",
     "2026-11-20",
     "2026-11-21",
+    "2026-11-22",
     "2026-11-23",
     "2026-11-24",
     "2026-11-25",
@@ -3734,7 +3736,7 @@
     "2027-11-20",
     "2027-11-21"
    ],
-   "syncAt": "21 نوفمبر، 3:24 ص",
+   "syncAt": "21 نوفمبر، 1:00 م",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
