@@ -1479,7 +1479,6 @@
    "unit": "262040",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-25",
     "2026-11-26",
     "2026-11-27",
     "2026-11-28",
@@ -1607,7 +1606,7 @@
     "2027-03-30",
     "2027-03-31"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "ical2": "https://www.airbnb.com/calendar/ical/1726069685160389333.ics?t=d02ee91fbe9e45f7866239208cabac7e&locale=ar",
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, elegantly designed apartment with self check-in, combining privacy and comfort with all the amenities you need.\nIt has a spacious living room, a balcony and three fully equipped bedrooms (two with king beds, one with two single beds), three bathrooms, a fully equipped kitchen, a coffee bar and a dining table for four.\nLocated in Al Rayyan, close to services, for a calm stay that suits families and friends."
   },
@@ -1937,7 +1936,6 @@
    "unit": "146574",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-25",
     "2026-11-26",
     "2026-11-27",
     "2026-11-28",
@@ -2034,7 +2032,7 @@
     "2027-02-27",
     "2027-02-28"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -2064,10 +2062,10 @@
    "unit": "152385",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-25",
-    "2026-11-26"
+    "2026-11-26",
+    "2026-11-27"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "desc_en": "A luxury apartment with self check-in: two bedrooms, a kitchen, a coffee corner, a living room and two bathrooms."
   },
   {
@@ -2096,10 +2094,12 @@
    "reviews": 98,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27",
+    "2026-11-28"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "unit": "177658",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
@@ -2358,10 +2358,11 @@
    "unit": "163817",
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -2510,9 +2511,12 @@
     "2026-11-22",
     "2026-11-23",
     "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27",
+    "2026-11-28"
    ],
-   "syncAt": "23 نوفمبر، 2:52 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "desc_en": "A luxury apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom."
   },
   {
@@ -3316,9 +3320,13 @@
     "2026-11-24",
     "2026-11-25",
     "2026-11-26",
-    "2026-11-27"
+    "2026-11-27",
+    "2026-11-29",
+    "2026-11-30",
+    "2026-12-01",
+    "2026-12-02"
    ],
-   "syncAt": "25 نوفمبر، 6:32 م",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "rating": "10",
    "reviews": 104,
    "unit": "198203",
@@ -3433,9 +3441,14 @@
     "2026-11-22",
     "2026-11-23",
     "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-29",
+    "2026-11-30",
+    "2026-12-01",
+    "2026-12-02"
    ],
-   "syncAt": "23 نوفمبر، 2:52 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "unit": "205837",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
@@ -3567,7 +3580,13 @@
     "2026-11-23",
     "2026-11-24",
     "2026-11-25",
+    "2026-11-26",
     "2026-11-27",
+    "2026-11-28",
+    "2026-11-29",
+    "2026-11-30",
+    "2026-12-01",
+    "2026-12-02",
     "2027-06-27",
     "2027-06-28",
     "2027-06-29",
@@ -3721,7 +3740,7 @@
     "2027-11-24",
     "2027-11-25"
    ],
-   "syncAt": "25 نوفمبر، 8:10 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
   },
@@ -3888,10 +3907,6 @@
    "reviews": 69,
    "unit": "185186",
    "sync": [
-    "2026-11-21",
-    "2026-11-22",
-    "2026-11-23",
-    "2026-11-24",
     "2026-11-25",
     "2026-11-26",
     "2026-11-27",
@@ -4053,7 +4068,7 @@
     "2027-11-24",
     "2027-11-25"
    ],
-   "syncAt": "25 نوفمبر، 8:10 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "ical2": "https://www.airbnb.com/calendar/ical/1489761248779876072.ics?t=9ac8cd30fd294ed4bdfdcbd32f9f4152&locale=ar",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
@@ -4264,9 +4279,15 @@
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
     "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27",
+    "2026-11-29",
+    "2026-11-30",
+    "2026-12-01",
+    "2026-12-02"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "rating": "9.9",
    "unit": "204745",
    "halls": 1,
@@ -4546,9 +4567,16 @@
     "2026-11-22",
     "2026-11-23",
     "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27",
+    "2026-11-28",
+    "2026-11-29",
+    "2026-11-30",
+    "2026-12-01",
+    "2026-12-02"
    ],
-   "syncAt": "23 نوفمبر، 2:52 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "rating": "9.9",
    "reviews": 110,
    "halls": 1,
@@ -4658,12 +4686,11 @@
    "reviews": 56,
    "checkAt": "21 أكتوبر، 9:14 م",
    "sync": [
-    "2026-11-24",
     "2026-11-25",
     "2026-11-26",
     "2026-11-27"
    ],
-   "syncAt": "25 نوفمبر، 1:51 ص",
+   "syncAt": "26 نوفمبر، 2:46 ص",
    "unit": "216360",
    "halls": 1,
    "desc_en": "Spaces designed to be your second home — relax in calm and comfort with family or friends.\nA modern, comfortable apartment with self check-in: one bedroom, a kitchenette, a coffee corner, a living room and a bathroom.\nA warm, homely setting that offers comfort, privacy and everything you need."
